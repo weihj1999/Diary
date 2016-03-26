@@ -1,0 +1,486 @@
+Openstack控制节点与网络节点分离设计
+1. 验证Chef部署方案的可行性
+2. 进行实际验证测试
+
+cinder 跨region的支持
+Storage replication
+
+single controller
+
+    "role[ibm-os-base]",
+    "role[ibm-os-database-server-node]",
+    "role[ibm-os-messaging-server-node]",
+    "role[ibm-os-messaging-client-node]",
+    "role[ibm-os-cache-server-node]",
+    "role[ibm-os-client-node]",
+    "recipe[ibm-openstack-common::controller-selinux]",
+    "recipe[ibm-openstack-simple-token]",
+    "role[os-identity]",
+    "recipe[ibm-openstack-common::configure-ldap]",
+    "role[os-image]",
+    "recipe[openstack-network::identity_registration]",
+    "role[os-network-openvswitch]",
+    "role[os-network-dhcp-agent]",
+    "recipe[ibm-openstack-network::iproute-upgrade]",
+    "recipe[ibm-openstack-network::ip-movement]",
+    "recipe[ibm-openstack-network::setup-l3-agent]",
+    "recipe[openstack-network::vpn_agent]",
+    "recipe[ibm-openstack-network::balancer]",
+    "recipe[ibm-openstack-network::hyperv]",
+    "role[os-network-metadata-agent]",
+    "role[os-network-server]",
+    "role[os-compute-setup]",
+    "role[os-compute-conductor]",
+    "role[os-compute-scheduler]",
+    "role[os-compute-api-os-compute]",
+    "role[os-compute-api-metadata]",
+    "role[os-compute-cert]",
+    "role[os-compute-vncproxy]",
+    "recipe[openstack-compute::serialproxy]",
+    "role[os-block-storage]",
+    "recipe[ibm-openstack-common::cinderv1-endpoint-register]",
+    "role[os-orchestration]",
+    "role[os-telemetry-agent-central]",
+    "role[os-telemetry-api]",
+    "role[os-telemetry-collector]",
+    "role[os-telemetry-agent-notification]",
+    "role[os-telemetry-alarm-evaluator]",
+    "role[os-telemetry-alarm-notifier]",
+    "role[os-bare-metal-api]",
+    "role[ibm-os-dashboard-node]",
+    "recipe[ibm-sce::config-sce-policy]",
+    "recipe[ibm-sce::add-sceagent-user]",
+    "recipe[ibm-sce::add-ssp-endpoint]",
+    "recipe[ibm-sce::config-horizon-setting]"
+    
+    
+    
+network:
+    "recipe[openstack-network::identity_registration]",
+    "role[os-network-openvswitch]",
+    "role[os-network-dhcp-agent]",
+    "recipe[ibm-openstack-network::iproute-upgrade]",
+    "recipe[ibm-openstack-network::ip-movement]",
+    "recipe[ibm-openstack-network::setup-l3-agent]",
+    "recipe[openstack-network::vpn_agent]",
+    "recipe[ibm-openstack-network::balancer]",
+    "recipe[ibm-openstack-network::hyperv]",
+    "role[os-network-metadata-agent]",
+    "role[os-network-server]",
+
+whj-network-node
+whj-single-controller-node
+/opt/ibm/cmwo/chef-repo/data_bags/example_data_bag_secret
+ 
+Error downloading packages:
+      python-zope-interface-4.0.5-4.el7.x86_64: [Errno 256] No more mirrors to try.
+      python-webob-1.2.3-6.el7.noarch: [Errno 256] No more mirrors to try.
+      
+http://autoproxy.au.ibm.com/hk1.pac
+knife cookbook create neutron-server-isolate
+alembic.rb
+knife cookbook upload neutron-server-isolate
+
+
+{
+  "name": "whj-network-node",
+  "description": "",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[neutron-server-isolate::check]",
+    "recipe[openstack-network::identity_registration]",
+    "role[os-network-openvswitch]",
+    "role[os-network-dhcp-agent]",
+    "recipe[ibm-openstack-network::iproute-upgrade]",
+    "recipe[ibm-openstack-network::ip-movement]",
+    "recipe[ibm-openstack-network::setup-l3-agent]",
+    "recipe[openstack-network::vpn_agent]",
+    "recipe[ibm-openstack-network::balancer]",
+    "recipe[ibm-openstack-network::hyperv]",
+    "role[os-network-metadata-agent]",
+    "role[os-network-server]"
+  ],
+  "env_run_lists": {
+
+  }
+}
+
+openstack-identity/attributes/default.rb:    "keystone_client_packages" => ["python-keystoneclient"],
+openstack-identity/attributes/default.rb:    "keystone_client_packages" => ["python-keystoneclient"],
+openstack-identity/attributes/default.rb:    "keystone_client_packages" => ["python-keystoneclient"],
+openstack-identity/recipes/client.rb:platform_options["keystone_client_packages"].each do |pkg|
+openstack-identity/spec/client-redhat_spec.rb:      expect(chef_run).to upgrade_package("python-keystoneclient")
+openstack-identity/spec/client_spec.rb:      expect(chef_run).to upgrade_package("python-keystoneclient")
+openstack-identity/README.md:Installs the keystone client packages
+openstack-identity/metadata.rb:recipe "openstack-identity::client", "Install packages required for keystone client"
+openstack-identity/templates/default/keystone.conf.erb:# The base public endpoint URL for Keystone that is advertised to clients
+openstack-identity/templates/default/keystone.conf.erb:# The base admin endpoint URL for Keystone that is advertised to clients (NOTE:
+openstack-identity/templates/default/keystone.conf.erb:# Require client certificate. (boolean value)
+openstack-identity/templates/default/keystone.conf.erb:# exist to order to maintain support for your v2 clients. (string value)
+openstack-identity/templates/default/keystone.conf.erb:# clients than it did previously.  Typically this means that the only time you
+
+
+{
+  "name": "ibm-os-client-node",
+  "description": "IBM OpenStack Client Node role",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+
+  },
+  "override_attributes": {
+
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[ibm-openstack-roles::client-node]"
+  ],
+  "env_run_lists": {
+
+  }
+}
+# encoding: UTF-8
+# =================================================================
+# Licensed Materials - Property of IBM
+#
+# (c) Copyright IBM Corp. 2015 All Rights Reserved
+#
+# US Government Users Restricted Rights - Use, duplication or
+# disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+# =================================================================
+#
+# Cookbook Name:: ibm-openstack-roles
+# Recipe:: client-node
+#
+
+# Include IBM OpenStack base recipes.
+include_recipe "ibm-openstack-roles::base"
+
+# Include the IBM OpenStack client recipes.
+include_recipe "openstack-common::openrc"
+include_recipe "openstack-common::client"
+include_recipe "openstack-identity::client"
+include_recipe "openstack-image::client"
+include_recipe "openstack-network::client"
+include_recipe "openstack-compute::client"
+include_recipe "openstack-orchestration::client"
+include_recipe "openstack-block-storage::client"
+include_recipe "openstack-telemetry::client"
+
+Chef::Exceptions::CookbookNotFound
+----------------------------------
+Cookbook ibm-openstack-roles not found. If you"re loading ibm-openstack-roles from another cookbook, make sure you configure the dependency in your metadata
+
+Cookbook Trace:
+---------------
+  /var/chef/cache/cookbooks/neutron-server-isolate/recipes/client.rb:2:in `from_file"
+
+Relevant File Content:
+----------------------
+/var/chef/cache/cookbooks/neutron-server-isolate/recipes/client.rb:
+
+  1:  # Include IBM OpenStack base recipes.
+  2>> include_recipe "ibm-openstack-roles::base"
+
+
+
+openstack endpoint create \
+--publicurl http://9.5.47.35:9696 \
+--adminurl http://9.5.47.35:9696 \
+--internalurl http://9.5.47.35:9696 \
+--region RegionOne \
+network
+
+[root@elvis-osee4 nova]# openstack service list
++----------------------------------+------------+----------------+
+| ID                               | Name       | Type           |
++----------------------------------+------------+----------------+
+| 1a231518baf44c1887c0a3b76fb053e2 | cinder     | volume         |
+| 21b00292303f4db39f624c7ad1a1fc48 | keystone   | identity       |
+| 3f3abf9d43cb4a2b9388b8e4ddb4594b | cinderv2   | volumev2       |
+| 4940401c6d904fd28f8bc41fb8a6b07d | glance     | image          |
+| 4de4d90c50ed44e8b28358e8a168955e | ceilometer | metering       |
+| a9a41150e711444995225413762bc033 | neutron    | network        |
+| cd0affc08e5d4be495db3561d04686f2 | heat       | orchestration  |
+| f03a3c1594f24938bf292bf54680987e | heat-cfn   | cloudformation |
+| f9152744ce56428d9c2febc5474c3082 | nova       | compute        |
+| fb6838d99bac409baa21fa591adf4a4c | ironic     | baremetal      |
++----------------------------------+------------+----------------+
+
+systemctl restart openstack-nova-api.service openstack-nova-scheduler.service openstack-nova-conductor.service
+
+systemctl enable neutron-server.service
+
+=================
+change db2 to mariadb
+
+
+
+
+{
+  "name":"osee4",
+  "description":"ctl",
+  "environment":"whj",
+  "secret_file":"CHANGEME",
+  "run_sequentially":false,
+  "nodes": [
+    {
+      "fqdn":"elvis-osee4.rch.kstart.ibm.com",
+      "password":"Passw0rd",
+      "quit_on_error":true,
+      "run_order_number":1,
+       "runlist": [
+         "role[whj-ctl]",
+         "role[ibm-os-prs-ego-master]",
+         "role[ibm-os-prs-controller-node]"
+      ]
+		}
+  ]
+}
+
+{
+  "name":"osee5",
+  "description":"net",
+  "environment":"whj",
+  "secret_file":"/opt/ibm/cmwo/chef-repo/data_bags/example_data_bag_secret",
+  "run_sequentially":false,
+  "nodes": [
+    {
+      "fqdn":"elvis-osee5.rch.kstart.ibm.com",
+      "password":"Passw0rd",
+      "quit_on_error":true,
+      "run_order_number":2,
+      "runlist": [
+        "role[whj-net]"
+      ]
+  	}
+  ]
+}
+
+    {
+    }  
+    
+neutron-dhcp-agent.service                                                                loaded active running   OpenStack Neutron DHCP Agent
+neutron-l3-agent.service                                                                  loaded active running   OpenStack Neutron Layer 3 Agent
+neutron-lbaas-agent.service                                                               loaded active running   SYSV: Support load balancer as a service workflow
+neutron-metadata-agent.service                                                            loaded active running   OpenStack Neutron Metadata Agent
+neutron-openvswitch-agent.service                                                         loaded active running   OpenStack Neutron Open vSwitch Agent
+
+Bara Advance InfoTech Co., Ltd
+
+
+IBM Ring Office, No. 28 Building  Zhongguancun Software Park  No. 8 Dongbeiwang West Rd  Beijing,100193,China
+
+
+
+QoS 限速在ovs上做 
+
+
+1024*1024*1024*1024
+ 
+1073741824
+1789569.7066666666666666666666667
+
+
+
+local_root= /www/share
+anonymous_enable=NO 
+write_enable=YES
+local_umask=022
+anon_upload_enable=NO
+anon_mkdir_write_enable=NO
+idle_session_timeout=60
+data_connection_timeout=120
+max_clients=10
+max_per_ip=5
+local_max_rate=1048576
+
+
+ip link add link ens34 name ens34.921 type vlan id 921
+ip addr add 10.0.21.20/24 brd 10.0.21.255 dev ens34.921
+ip link set dev ens34.921 up
+ip -d link show ens34.921
+
+ip link add link ens34 name ens34.931 type vlan id 931
+ip addr add 10.0.31.20/24 brd 10.0.31.255 dev ens34.931
+
+ipmaddr add 33:44:00:00:00:01 dev eth0  
+ipmaddr del 33:44:00:00:00:01 dev eth0  
+ipmaddr show dev eth0  
+netstat -g 
+    
+ip link set dev ens34.931 up
+ip -d link show ens34.931
+
+#ip maddr add 33:44:00:00:00:01 dev eth0  
+#ip maddr del 33:44:00:00:00:01 dev eth0  
+#ip maddr list dev eth0 
+    
+ip link add link ens34 name ens34.931 type vlan id 931
+ip addr add 10.0.31.19/24 brd 10.0.31.255 dev ens34.931
+ip link set dev ens34.931 up
+ip -d link show ens34.931
+
+ip link add link ens34 name ens34.931 type vlan id 931
+ip addr add 10.0.31.23/24 brd 10.0.31.255 dev ens34.931
+ip link set dev ens34.931 up
+ip -d link show ens34.931
+ip link set dev ens34.921 down
+ip link del dev ens34.921
+ip link set dev ens34.931 down
+ip link del dev ens34.931
+  
+tcpdump -i ens34 -ne | grep "10.0.21.20"
+
+ip addr add 10.0.0.1/24 broadcast 10.0.0.255 dev eth1  
+ip addr add 10.0.0.2/24 broadcast 10.0.0.255 dev eth1  
+ip addr add 10.0.0.3/24 broadcast 10.0.0.255 dev eth1 
+
+
+任务分配:
+1. LB, VPN需要在DRaaS平台上做
+2. LB, VPN测试
+
+symphony安装的手册
+kilo版的大树据支持
+自动扩展的材料
+GPFS和HDFS的差异
+big insight
+IBM InfoSphere BigInsights Reference Architecture
+
+[rhel71]
+name=rhel71
+baseurl=file:///root/rhel71/
+enabled=1
+gpgcheck=0
+
+
+
+明天的任务
+1. 继续完成测试pod
+2. 配合杭研院, 安装icm
+3. 
+
+/opt/slancer/ops/chef-repo/data_bags/example_data_bag_secret
+"role[ibm-os-single-controller-distributed-database-node]",
+"role[ibm-os-vmware-driver-node]"
+        
+  "role[ibm-os-base]",
+  "role[ibm-os-database-client-node]",
+  "role[ibm-os-messaging-client-node]",
+  "role[ibm-os-cache-server-node]",
+  "recipe[ibm-openstack-common::controller-selinux]",
+  "recipe[ibm-openstack-simple-token]",
+  "role[os-identity]",
+  "role[os-image]",
+  "recipe[openstack-network::identity_registration]",
+  "role[os-network-openvswitch]",
+  "role[os-network-dhcp-agent]",
+  "recipe[ibm-openstack-network::iproute-upgrade]",
+  "recipe[ibm-openstack-network::ip-movement]",
+  "recipe[ibm-openstack-network::setup-l3-agent]",
+  "recipe[openstack-network::vpn_agent]",
+  "recipe[ibm-openstack-network::balancer]",
+  "role[os-network-metadata-agent]",
+  "role[os-network-server]",
+  "role[os-compute-setup]",
+  "role[os-compute-conductor]",
+  "role[os-compute-scheduler]",
+  "role[os-compute-api-os-compute]",
+  "role[os-compute-api-metadata]",
+  "role[os-compute-cert]",
+  "role[os-compute-vncproxy]",
+  "role[os-block-storage]",
+  "recipe[ibm-openstack-common::cinderv1-endpoint-register]",
+  "role[os-orchestration]",
+  "role[os-telemetry-agent-central]",
+  "role[os-telemetry-api]",
+  "role[os-telemetry-collector]",
+  "role[os-telemetry-agent-notification]",
+  "role[os-telemetry-alarm-evaluator]",
+  "role[os-telemetry-alarm-notifier]",
+  "role[ibm-os-client-node]",
+  "role[ibm-os-dashboard-node]",
+  "recipe[ibm-sce::config-sce-policy]",
+  "recipe[ibm-sce::add-sceagent-user]",
+  "recipe[ibm-sce::add-ssp-endpoint]",
+  "recipe[ibm-sce::config-horizon-setting]"
+
+
+description "IBM OpenStack Single Controller with Distributed Database Node role"
+run_list(
+  "role[ibm-os-base]",
+  "role[ibm-os-database-client-node]",
+  "role[ibm-os-messaging-server-node]",
+  "role[ibm-os-messaging-client-node]",
+  "role[ibm-os-cache-server-node]",
+  "recipe[ibm-openstack-common::controller-selinux]",
+  "recipe[ibm-openstack-simple-token]",
+  "role[os-identity]",
+  "role[os-image]",
+  "recipe[openstack-network::identity_registration]",
+  "role[os-network-openvswitch]",
+  "role[os-network-dhcp-agent]",
+  "recipe[ibm-openstack-network::iproute-upgrade]",
+  "recipe[ibm-openstack-network::ip-movement]",
+  "recipe[ibm-openstack-network::setup-l3-agent]",
+  "recipe[openstack-network::vpn_agent]",
+  "recipe[ibm-openstack-network::balancer]",
+  "role[os-network-metadata-agent]",
+  "role[os-network-server]",
+  "role[os-compute-setup]",
+  "role[os-compute-conductor]",
+  "role[os-compute-scheduler]",
+  "role[os-compute-api-os-compute]",
+  "role[os-compute-api-metadata]",
+  "role[os-compute-cert]",
+  "role[os-compute-vncproxy]",
+  "role[os-block-storage]",
+  "recipe[ibm-openstack-common::cinderv1-endpoint-register]",
+  "role[os-orchestration]",
+  "role[os-telemetry-agent-central]",
+  "role[os-telemetry-api]",
+  "role[os-telemetry-collector]",
+  "role[os-telemetry-agent-notification]",
+  "role[os-telemetry-alarm-evaluator]",
+  "role[os-telemetry-alarm-notifier]",
+  "role[ibm-os-client-node]",
+  "role[ibm-os-dashboard-node]",
+  "recipe[ibm-sce::config-sce-policy]",
+  "recipe[ibm-sce::add-sceagent-user]",
+  "recipe[ibm-sce::add-ssp-endpoint]",
+  "recipe[ibm-sce::config-horizon-setting]"
+  
+  
+  
+network node:
+  "role[ibm-os-base]",
+  "role[ibm-os-messaging-server-node]",
+  "role[os-network-openvswitch]",
+  "role[os-network-dhcp-agent]",
+  "recipe[ibm-openstack-network::iproute-upgrade]",
+  "recipe[ibm-openstack-network::ip-movement]",
+  "recipe[ibm-openstack-network::setup-l3-agent]",
+  "recipe[openstack-network::vpn_agent]",
+  "role[os-network-metadata-agent]",
+
+
+包含如下内容：
+1. 数据复制区测试
+1.1 部署模板的创建与导入
+1.2 网络功能/性能测试
+1.3 部署测试
+1.4 存储功能/性能测试
+2. FO/DRILL区测试
+2.1 部署模板的创建与导入
+2.2 网络功能/性能测试
+2.3 部署测试
+2.4 存储功能/性能测试
+
+

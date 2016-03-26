@@ -1,0 +1,173 @@
+/opt/ibm/cmwo/yum-repo/mysql-5.5-community/el/7/
+
+mysql-5.5-community/el/7/x86_64/5.5/
+
+
+bjosptstctl01
+bjosptstctl01
+
+
+1. ESK的谁比较熟
+2. https://9.5.47.149/auth/login/  登录失败
+3. 
+{
+  "default_attributes": {
+    "openstack": {
+      "endpoints": {
+        "network-openvswitch": {
+          "bind_interface": "em3"
+        },
+        "compute-vnc-bind": {
+          "bind_interface": "em3"
+        },
+        "compute-vnc-proxy-bind": {
+          "bind_interface": "em3"
+        }
+      },
+      "network": {
+        "verbose": "False",
+        "debug": "False",
+        "openvswitch": {
+          "bridge_mappings": "default:br-data",
+          "bridge_mapping_interface": "br-data:em4"
+        }
+      }
+    }
+  }
+}
+
+
+
+1. PBC的名称显示不一致的问题，发信寻求支持  准备处理(找康明)
+2. 完成环境搭建，必须完成 ==> done
+3. 报销  未完成
+4. 以前报销检查	 done
+5。面试		约微信	done
+6。测试开发case		未开始
+
+
+"-A FWR -m state --state NEW -m tcp -p tcp --dport 2049 -j ACCEPT -m comment --comment \"nfs\"\n-A FWR -m multiport -m state --state NEW -m udp -p udp --dports 111,875,32803,32769,892,662,2020,20049 -j ACCEPT -m comment --comment \"nfs\""
+  "override_attributes": {
+    "openstack": {
+      "network": { 
+        "l3": {
+          "external_network_bridge": "br-ex",
+          "external_network_bridge_interface": "em1"
+        },
+
+Ppt方案 讨论问题收集:
+１．	对象存储的支持，使用场景？如何使用？
+２．	支持的模块？支持的程度及差异
+３．	ＳＳＰ，ｎｐｉｖ对网络设备的支持调研
+各个灾备分区的资源使用特点
+
+openstack1
+
+if [ $BUILDING_APPLIANCE == "NO" ]; then
+    # Create a test loopfile.
+    dd if=/dev/zero of=cinder-volumes bs=1 count=0 seek=$CINDER_VOLUME_SIZE
+    # Mount the file.
+    losetup /dev/loop2 cinder-volumes
+    # Initialize as a physical volume.
+        pvcreate /dev/loop2
+    # Create the volume group.
+        vgcreate cinder-volumes /dev/loop2
+    # Verify the volume has been created correctly.
+        pvscan
+else
+    # Should not need cinder-volume VG or cinder-volume service enabled
+    #mkdir /var/lib/sceappliance/
+    # Create a test loopfile.
+    #dd if=/dev/zero of=/var/lib/sceappliance/cinder-volumes bs=1 count=0 seek=2M
+    # Mount the file.
+    #losetup /dev/loop2 /var/lib/sceappliance/cinder-volumes
+    #write_to "losetup /dev/loop2 /var/lib/sceappliance/cinder-volumes" /etc/rc.local
+
+
+
+一台虚拟机
+
+A B 云  1g, 10g
+
+两个客户, 各有一个ＫＶＭ虚拟机 , 虚拟机的配置需要了解,上面的数据和应用, windows, sqlserver, IIS, 
+Ａ->Ｂ进行迁移
+
+Openstack的，　优丝德的
+A: nova-network: 
+B: neutron 网络类型：
+
+可以上去了解A云
+存储: 
+需要虚拟机存储方式, 模板信息, 是否使用了cinder?
+
+需要了解ceph的信息
+
+
+
+glance image-create --name win2k8 --file win2k8new.qcow2 --min-ram 2048 --min-disk 20 --is-public True --container-format bare --disk-format qcow2 --progress
+
+
+vlhQfEpk#
+vlhQfEpk#
+
+ IBM Ring Office, No. 28 Building Zhongguancun Software Park  No. 8 Dongbeiwang West Rd Beijing,100193,China
+
+
+52Z 20L 1S 5套字 卖jj
+
+
+天达售后:  010-68233852
+
+Expense reimbursement
+
+
+knife bootstrap 10.240.0.132 -x root -P Passw0rd --run-list 'recipe[createstack::heat-config]'
+
+
+
+
+http://note.youdao.com/groupshare/?token=A8D02155916C49CD994B66FFF8EEB884&gid=10719971
+
+webchat
+thirumanoj
+
+
+weihongj /  vlhQfEpk#
+
+KVM 虚拟化相关: 
+qemu-img.x86_64                        2:0.12.1.2-2.415.e16
+qemu-kvm.x86_64                        2:0.12.1.2-2.415.el6
+libvirt.x86_64                         0.10.2-29.el6
+
+系统相关:
+Red Hat Enterprise Linux Server release 6.5 (Santiago
+对应linux内核版本:  2.6.32-431.el6.x86_64
+
+libguestfs-tools.x86_64  
+
+
+    <hostdev mode='subsystem' type='usb'>
+      <source startupPolicy='optional'>
+        <vendor id='0x1234'/>
+        <product id='0xbeef'/>
+      </source>
+      <boot order='2'/>
+    </hostdev>
+
+	  <hostdev mode='subsystem' type='usb' managed='yes'>
+      <source>
+        <vendor id='0x058f'/>
+        <product id='0x6387'/>
+        <address bus='1' device='2'/>
+      </source>
+      <alias name='hostdev0'/>
+    </hostdev>
+    
+    <hostdev mode='subsystem' type='usb' managed='yes'>
+      <source>
+        <vendor id='0x0781'/>
+        <product id='0x5567'/>
+        <address bus='1' device='3'/>
+      </source>
+      <alias name='hostdev0'/>
+    </hostdev>

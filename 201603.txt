@@ -1,0 +1,572 @@
+iptables -A INPUT -p tcp --dport 8080 -j ACCEPT
+
+How to use iptables in rhel71
+
+1. stop firewall
+systemctl stop firewalld.service # stop firewall
+
+systemctl disable firewalld.service #disable firewall
+
+2 install iptables
+
+yum install iptables-services # install
+
+vi /etc/sysconfig/iptables #edit the configuration file
+
+# Firewall configuration written by system-config-firewall
+
+# Manual customization of this file is not recommended.
+
+*filter
+
+:INPUT ACCEPT [0:0]
+
+:FORWARD ACCEPT [0:0]
+
+:OUTPUT ACCEPT [0:0]
+
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+-A INPUT -p icmp -j ACCEPT
+
+-A INPUT -i lo -j ACCEPT
+
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT
+
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT
+
+-A INPUT -m state --state NEW -m tcp -p tcp --dport 3306 -j ACCEPT
+
+-A INPUT -j REJECT --reject-with icmp-host-prohibited
+
+-A FORWARD -j REJECT --reject-with icmp-host-prohibited
+
+COMMIT
+
+:wq! #save and exit
+
+
+
+
+=====================
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 3306 -j ACCEPT
+-A INPUT -p tcp -m state --state NEW -m tcp --dport 8080 -j ACCEPT
+
+iptables-save
+
+
+$ git remote -v
+origin  git@github.com:weihj1999/Python.git (fetch)
+origin  git@github.com:weihj1999/Python.git (push)
+
+weihj@IBM162-P163XZE /cygdrive/d/HongKing/2. Self/MyGithub/Python/webpy
+$ git branch -a
+  master
+* mycygwin
+  remotes/origin/HEAD -> origin/master
+  remotes/origin/master
+  remotes/origin/mycygwin
+
+weihj@IBM162-P163XZE /cygdrive/d/HongKing/2. Self/MyGithub/Python/webpy
+$ git push origin mycygwin:master
+Total 0 (delta 0), reused 0 (delta 0)
+To git@github.com:weihj1999/Python.git
+   2e5e571..e6d6e5e  mycygwin -> master
+
+
+
+
+
+virt-install --name w2k8 --hvm --ram 4096 --vcpus 2 \
+         --disk /home/w2k8.qcow2  \
+         --cdrom /home/cn_windows_server_2008_r2_x64_dvd.iso   -d \
+         --disk path=/home/virtio-win-0.1.102.iso,device=cdrom
+         --network=default,model=virtio \
+         --graphics vnc,listen=0.0.0.0 \
+         --os-type=windows \
+         --os-variant=win2k8r2
+ovs
+virt-install --name w2k8 --hvm --ram 4096 --vcpus 2 \
+         --disk /home/w2k8.qcow2  \
+         --cdrom /home/en_windows_server_2008_r2_with_sp1_x64_dvd_617601.iso  \
+         --disk path=/home/virtio-win-0.1.102.iso,device=cdrom \
+         --network=default \
+         --graphics vnc,listen=0.0.0.0 \
+         --os-type windows --os-variant=win2k8
+
+
+
+         
+使用osinfo-query os来查看os-variant列表
+
+virt-install  --name rhel71 --ram 1024 --cdrom=/home/rhel-server-7.1-x86_64-dvd.iso --bridge=br0,model=virtio --disk /home/rhel71.qcow2,format=qcow2 --graphics vnc,listen=0.0.0.0 --os-type=linux --os-variant=rhel7
+
+
+
+virt-install --name win7 \
+		--hvm --ram 4096 --vcpus 2   \
+		--disk pool=mydefault,size=60   \
+		--network bridge=br0 --accelerate  \
+		--vnc --vncport=5911   \
+		--cdrom /home/install/software/windows7_Ultimate_x64.iso -d
+
+
+
+
+第二周工作重点
+
+1. jxrccb 浏览用户的培植
+2. cindr的问题
+3. 社区的继续研究工作
+4. rhel模板 :
+新规划：
+1. 英语口语
+2. openstack， docker， sparker技术
+3. architecture技术 
+
+
+
+
+
+2016工作重点初步规划
+1 工作问题， 控制好时间点， 做好准备
+2 蓝沧的事情，继续支持
+3 甄浩的事情，可以考虑参与， 需要通盘考虑问题 ， Openstack， 
+技术方向上
+1 云计算技术， openstack Mirantis
+2 开发技术， python
+3 系统实施运维python 
+4 大数据技术
+import pdb; pdb.set_trace()
+
+iscsiadm -m discovery -t sendtargets -p 172.16.131.56
+                                        
+190099
+福田:
+
+栗总 
+IBM对Openstack的支持是持续的,深入的.有领导力的
+
+此情可待成追忆
+
+2. 李白 
+
+我寄愁心与明月
+随风直到夜郎西
+
+
+清水出芙蓉, 天然去雕饰.
+
+
+3. 
+罗隐  蜂 
+不论平地与山尖,无限风光尽被占.
+
+为谁辛苦为谁甜  赞美的是 蜜蜂 
+
+罗隐  自遣
+
+
+4.
+风吹柳花满店香, 吴姬压酒劝客尝
+压酒的意思是: 榨酒 (除酒糟)
+
+杜甫
+江湖多风波,舟楫恐失坠.
+
+
+5. 
+
+归雁入胡天
+
+四海无闲田
+
+中国诗词会
+
+情怀的东西是机器人完成不了的
+
+李白：月下独酌
+
+花间一壶酒
+白居易  长恨歌
+回眸一笑百媚生
+
+韩愈：
+云横秦岭家何在
+雪拥蓝关马不前
+
+
+绿树村边合
+青山郭外斜
+
+刘禹锡　　秋词　
+
+刘禹锡　再游玄都观
+
+玄都观里桃千树
+尽是刘郎去后栽
+
+反其意而上
+
+但是龙城飞将在，　不教胡马度阴山
+匈奴未灭不言家，　驱逐行行边缴赊　－－　霍去病
+
+木讷近仁　
+胜亦欣然败亦可喜
+
+李四维：　
+
+茅屋为秋风所破歌
+
+李白
+
+早发白帝城
+
+秦观
+
+游子吟
+
+中秋节
+
+大地之歌　
+
+
+王维　　送别
+
+
+
+
+
+
+ 
+DB2高可用方案
+
+管理各类存储HP, EMC, IBM,以及其他.
+
+GUI, Horizon的增强开发.  
+
+存储AZ
+计算AZ
+RackAZ
+
+VM:　msServerC000001_1456711789722
+1.0.8.6  :
+iqn.1998-01.com.vmware:56686294-d6cc-5ab2-3fa6-0cc47a71d682-63aa7744
+
+
+重新配置虚拟机
+msServerC000001_1456711789722-302e6349-c617-4497-bd4e-4eaac5b4c579
+未能添加磁
+盘 scsi0:1。
+查看详细信息...
+VSPHERE.LOCAL\Administrator
+YJP1DRVC01
+2016/3/1 18:39:56
+2016/3/1 18:39:56
+2016/3/1 18:39:58
+
+未能锁定文件
+无法打开磁盘“/vmfs/volumes/5683916f-cd42bc3a-c1bf-0cc47a71d682/
+msServerC000001_1456711789722-302e6349-c617-4497-bd4e-4eaac5b4c579/
+msServerC000001_1456711789722-302e6349-c617-4497-bd4e-4eaac5b4c579_2.vmdk”
+或其所依赖的快照磁盘之一。 
+无法打开 scsi0:1 电源。 
+未能添加磁盘 scsi0:1。
+
+
+import pdb; pdb.set_trace()
+
+git remote add gerrit https://weihj1999@review.openstack.org/openstack/nova.git
+
+D4VNIH4oH6zxkom0M+u8ufRQn3oj56GSptjRyywWNg
+
+No iscsi_target is presently exported for volume
+
+
+
+
+
+
+
+dd if=/dev/zero of=cinder-volumes bs=1 count=0 seek=1024G 
+
+dddd if=/dev/zero of=cinder-volumes bs=1 count=0 seek=40G
+                                                     
+tgtadm --lld iscsi --op show --mode target
+
+Innovation:
+
+使用内存设备作为存储设备,并export出去,是否可以大幅度提高存储性能.
+参考:
+targetcli is a command line interface that allows an administrator to 
+export local storage resoures (backed by either files, volumes, local SCIS
+devices, or RAM disks) to remote systems.
+
+
+No iscsi_target is presently exported for volume
+
+No iscsi_target is presently exported for volume                             
+
+The lio_initiator_iqns option has been deprecated and no longer has any effect
+
+'cinder.volume.targets.lio.LioAdm
+/usr/bin/cinder-volume --config-file /etc/cinder/cinder.conf --logfile /var/log/cinder/volume.log
+
+
+[root@icm-131-ctrl1-hyper-v targets]# lvdisplay
+  --- Logical volume ---
+  LV Path                /dev/cinder-volumes/volume-6e16846f-6cb8-4255-b75e-fe63e0a9fb7c
+  LV Name                volume-6e16846f-6cb8-4255-b75e-fe63e0a9fb7c
+  VG Name                cinder-volumes
+  LV UUID                fVKZGu-eCtB-tTtu-4YWo-0leK-956H-2QS7vN
+  LV Write Access        read/write
+  LV Creation host, time icm-131-ctrl1-hyper-v, 2016-03-08 05:44:23 -0500
+  LV Status              available
+  # open                 0
+  LV Size                1.00 GiB
+  Current LE             256
+  Segments               1
+  Allocation             inherit
+  Read ahead sectors     auto
+  - currently set to     8192
+  Block device           253:3
+   
+/usr/bin/cinder-rtstool create [device] [name] [userid] [password] [iser_enabled] <initiator_iqn,iqn2,iqn3,...> [-a<IP1,IP2,...>] [-pPORT]
+
+cinder-rtstool /dev/cinder-volumes/volume-6e16846f-6cb8-4255-b75e-fe63e0a9fb7c 
+
+
+target_driver cinder.volume.targets.lio.LioAdm
+
+
+usage: nova boot [--flavor <flavor>] [--image <image>]
+                 [--image-with <key=value>] [--boot-volume <volume_id>]
+                 [--snapshot <snapshot_id>] [--min-count <number>]
+                 [--max-count <number>] [--meta <key=value>]
+                 [--file <dst-path=src-path>] [--key-name <key-name>]
+                 [--user-data <user-data>]
+                 [--availability-zone <availability-zone>]
+                 [--security-groups <security-groups>]
+                 [--block-device-mapping <dev-name=mapping>]
+                 [--block-device key1=value1[,key2=value2...]]
+                 [--swap <swap_size>]
+                 [--ephemeral size=<size>[,format=<format>]]
+                 [--hint <key=value>]
+                 [--nic <net-id=net-uuid,v4-fixed-ip=ip-addr,v6-fixed-ip=ip-addr,port-id=port-uuid>]
+                 [--config-drive <value>] [--poll]
+                 <name>
+nova boot --flavor 111 --image centos71 --nic net-id=36bca71a-8893-4b2a-943d-39a27539e695 testhj
+
+
+
+
+hacking anyjson coverage ddt fixtures mock mox3 PyMySQL psycopg2 oslotest sphinx python-subunit testtools testrepository testresources testscenarios oslosphinx os-testr tempest-lib bandit reno 
+
+
+virt-install --name win7 --hvm --ram 4096 --vcpus 2 \
+  --disk pool=mydefault ,size=60  \
+  --network bridge=br0 --accelerate  --vnc --vncport=5911 \
+  --cdrom /home/install/softwarew/indows7_Ultimate_x64.iso -d
+virt-install --name win7 --hvm --ram 4096 --vcpus 2   \ 
+	--disk pool=mydefault,size=60   \ 
+	--network bridge=br0 --accelerate  --vnc --vncport=5911   \
+	--cdrom /home/install/software/windows7_Ultimate_x64.iso -d 
+
+psycopg2
+oslotest
+
+sudo easy_install virtualenv
+
+My DevStack Install History
+========================
+DevStack Components Timed
+========================
+
+run_process - 43 secs
+apt-get-update - 10 secs
+pip_install - 538 secs
+restart_apache_server - 12 secs
+wait_for_service - 10 secs
+git_timed - 853 secs
+apt-get - 259 secs
+
+
+
+This is your host IP address: 9.123.137.229
+This is your host IPv6 address: ::1
+Horizon is now available at http://9.123.137.229/dashboard
+Keystone is serving at http://9.123.137.229:5000/
+The default users are: admin and demo
+The password: Passw0rd
+2016-03-11 10:30:32.415 | stack.sh completed in 2605 seconds.
+
+usage: keystone user-create --name <user-name> [--tenant <tenant>]
+                            [--pass [<pass>]] [--email <email>]
+                            [--enabled <true|false>]
+
+Create new user.
+
+Arguments:
+  --name <user-name>    New user name (must be unique).
+  --tenant <tenant>, --tenant-id <tenant>
+                        New user default tenant.
+  --pass [<pass>]       New user password; required for some auth backends.
+  --email <email>       New user email address.
+  --enabled <true|false>
+
+
+usage: keystone user-role-add --user <user> --role <role> [--tenant <tenant>]
+
+Add role to user.
+
+Arguments:
+  --user <user>, --user-id <user>, --user_id <user>
+                        Name or ID of user.
+  --role <role>, --role-id <role>, --role_id <role>
+                        Name or ID of role.
+  --tenant <tenant>, --tenant-id <tenant>
+                        Name or ID of tenant.
+                        
+                        
+Openstack浏览用户试验:
+
+创建租户
+$ keystone tenant-create --name tenant1 --description "for test" --enabled true
++-------------+----------------------------------+
+|   Property  |              Value               |
++-------------+----------------------------------+
+| description |             for test             |
+|   enabled   |               True               |
+|      id     | b2c6a99976994d31bb2581b528a40dd3 |
+|     name    |             tenant1              |
++-------------+----------------------------------+
+创建用户
+$ keystone user-create --name user1 --tenant-id b2c6a99976994d31bb2581b528a40dd3 --pass Passw0rd --email user1@test.com --enable true
+
++----------+----------------------------------+
+| Property |              Value               |
++----------+----------------------------------+
+|  email   |          user1@test.com          |
+| enabled  |               True               |
+|    id    | aa5cc41c487d4220a5fc6ea1c2494ccf |
+|   name   |              user1               |
+| tenantId | b2c6a99976994d31bb2581b528a40dd3 |
+| username |              user1               |
++----------+----------------------------------+
+
+查询当年可用的role
+$ keystone role-list
++----------------------------------+---------------+
+|                id                |      name     |
++----------------------------------+---------------+
+| 5cffc5212eaa431fb0d13fb7767309f2 |     Member    |
+| 5c38510394754501b5f70d2ac0877d6b | ResellerAdmin |
+| 9fe2ff9ee4384b1894a90878d3e92bab |    _member_   |
+| 9b26aa823d3d4abbbc117ce76e2be04a |     admin     |
+| 85aeb4c625a848d49101eba3ccec64e9 |  anotherrole  |
+| 37a105b6eee041e6843e2a26b18ccf59 |    service    |
++----------------------------------+---------------+
+首先测试admin用户,所以把user1设置为admin
+
+$ keystone user-role-add --user user1 --role admin --tenant tenant1
+
+测试通过
+
+创建一个新的role
+$ keystone role-create --name viewer
++-----------+----------------------------------+
+|  Property |              Value               |
++-----------+----------------------------------+
+| domain_id |                                  |
+|     id    | 88356a4ed6024fe09b908effb58b9114 |
+|    name   |              viewer              |
++-----------+----------------------------------+
+$ keystone role-list
++----------------------------------+---------------+
+|                id                |      name     |
++----------------------------------+---------------+
+| 5cffc5212eaa431fb0d13fb7767309f2 |     Member    |
+| 5c38510394754501b5f70d2ac0877d6b | ResellerAdmin |
+| 9fe2ff9ee4384b1894a90878d3e92bab |    _member_   |
+| 9b26aa823d3d4abbbc117ce76e2be04a |     admin     |
+| 85aeb4c625a848d49101eba3ccec64e9 |  anotherrole  |
+| 37a105b6eee041e6843e2a26b18ccf59 |    service    |
+| 88356a4ed6024fe09b908effb58b9114 |     viewer    |
++----------------------------------+---------------+
+
+创建新的用户viewer1,
+
+$ keystone user-create --name viewer1 --tenant-id b2c6a99976994d31bb2581b528a40dd3 --pass Passw0rd --email viewer1@test.com --enable true     
++----------+----------------------------------+
+| Property |              Value               |
++----------+----------------------------------+
+|  email   |         viewer1@test.com         |
+| enabled  |               True               |
+|    id    | ff3e53948a0641e2afe9a4fbe8762bb1 |
+|   name   |             viewer1              |
+| tenantId | b2c6a99976994d31bb2581b528a40dd3 |
+| username |             viewer1              |
++----------+----------------------------------+
+
+检查改用的role
+$ keystone user-role-list --user viewer1 --tenant tenant1
+
++----------------------------------+----------+----------------------------------+----------------------------------+
+|                id                |   name   |             user_id              |            tenant_id             |
++----------------------------------+----------+----------------------------------+----------------------------------+
+| 9fe2ff9ee4384b1894a90878d3e92bab | _member_ | ff3e53948a0641e2afe9a4fbe8762bb1 | b2c6a99976994d31bb2581b528a40dd3 |
++----------------------------------+----------+----------------------------------+----------------------------------+
+
+目前该用户只是租户1的成员
+该权限允许用户在租户内进行虚拟机,磁盘,映像以及安全组管理,应该是大于我们我们需要的角色权限 
+
+
+wget ftp://ftpuser:passw0rd@9.181.137.137/ISO/cn_windows_server_2012_r2_with_update_x64_dvd_6052725.iso
+
+数据资源统计通用工具
+
+在广大客户环境中，有着无数的资源需要统计，管理，通常这些都被忽略掉了。 办公室里面每天消耗掉的废纸生产车间里面每天产生的随意废料。 这些大量的资源需要一个有效的工具来对他们进行统计，这是数据认知第一步。我希望我们能共同开发一个通用的基于单一资源的数据统计工具；后续有数据分析工具等
+
+Scenario
+
+最初的场景1，某一资源（比如说一个厂房车间对某一零件）进行统计汇总
+1. 入场时的零件（名称，数量，规格，用途，其他）
+2. 出场时的零件（名称，数量，规格，用途，其他）
+基于该资源进行的扩展属性（为未来数据分析的方便额外附加的属性）
+
+"none_viewer":"rule:admin_or_owner and not role:viewer"
+
+你好， 我也是IBM的，平常帮同时在周末办进京证，办理一次50元，周中把行驶本给我，周末去办，办理好之后下个周一归还行驶本。
+
+devops持续交付过程中出现的问题，以什么方式呈现？
+
+多环境管理的实现
+
+
+
+车联网平台架构图
+
+前端 ：
+车辆定位，报警
+
+
+高写入，读出。
+
+
+mysql
+centos
+
+网络上的要求
+
+
+sqlserver： 几乎所有应用都用了
+
+
+In order to user mysql-python install python-devel with
+# yum install python-devel -y
+then install MySQL-python with
+# yum install -y MySQL-python.x86_64
+
+create table todo (id serial primary key, title text, created timestamp default now(), done boolean default 'f',);
+

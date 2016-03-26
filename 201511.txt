@@ -1,0 +1,526 @@
+virt-install --name rhel66 --ram 2048  --vcpus 2 \
+--network bridge=br-bond0,model=virtio \
+--disk path=/var/lib/libvirt/images/rhel66.qcow2,device=disk,bus=virtio \
+--cdrom /var/lib/libvirt/images/rhel-server-6.6-x86_64-dvd.iso \
+--vnc --os-type linus --os-variant rhel6
+
+ nova boot --image rhel66 --flavor m1.medium --nic net-id=1e965648-3a72-4987-a511-3531f47892e9 --availability-zone zone3 --config-drive true hj1
+
+virt-install --name rhel6u6 --ram 2048  --vcpus 2 \
+--network bridge=br-bond0,model=virtio \
+--disk path=/var/lib/libvirt/images/rhel6u6.qcow2,device=disk,bus=virtio \
+--cdrom /var/lib/libvirt/images/rhel-server-6.6-x86_64-dvd.iso \
+--vnc --os-type linus --os-variant rhel6
+
+usage: nova boot [--flavor <flavor>] [--image <image>]
+                 [--image-with <key=value>] [--boot-volume <volume_id>]
+                 [--snapshot <snapshot_id>] [--min-count <number>]
+                 [--max-count <number>] [--meta <key=value>]
+                 [--file <dst-path=src-path>] [--key-name <key-name>]
+                 [--user-data <user-data>]
+                 [--availability-zone <availability-zone>]
+                 [--security-groups <security-groups>]
+                 [--block-device-mapping <dev-name=mapping>]
+                 [--block-device key1=value1[,key2=value2...]]
+                 [--swap <swap_size>]
+                 [--ephemeral size=<size>[,format=<format>]]
+                 [--hint <key=value>]
+                 [--nic <net-id=net-uuid,v4-fixed-ip=ip-addr,v6-fixed-ip=ip-addr,port-id=port-uuid>]
+                 [--config-drive <value>] [--poll]
+                 <name>
+
+nova boot --image rhel66 --flavor m1.medium --nic port-id=3d6dc028-350d-4d59-a275-c50f59d11d3b --availability-zone zone3 --config-drive true hj1                 
+
+逻辑架构图
+实施架构图
+管理节点高可用方案
+调度策略: 尽量保证工作负载均匀分布
+?配置冷迁移
+虚拟机配置修改的标准操作
+镜像的使用最佳实践 (命名规范)
+
+计算机点命名规范
+网络的命名
+AZ的命名规范:  4个AZ
+安全策略(防火墙端口)
+
+运维手册
+
+测试手册
+
+
+
+           
+
+HBRCCB
+王工
+          
+8.1.1.15 dep  root/xtgl0806
+8.1.1.17 icm ctl for vcenter  root/xtgl0806
+8.1.1.19 icm ctl for pvc root/xtgl0806
+======
+8.1.1.21 pvc  root/xtgl0806
+192.168.1.74 vcenter   administrator/Admin@1234
+
+连接方法:
+
+配置ip
+9.1.60.69
+24
+9.1.60.254
+
+icm
+===========
+8.1.1.15        depsrvr.ibmpowercloud.com depsrvr
+8.1.1.19        icmpowervc.ibmpowercloud.com icm
+8.1.1.21        powervc123.ibmpowercloud.com powervc123
+8.1.1.17        icmvmware.ibmpowercloud.com vmware
+
+[root@depsrvr ~]# cat /etc/sysconfig/network-scripts/ifcfg-ens192 
+TYPE=Ethernet
+BOOTPROTO=none
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+NAME=ens192
+UUID=c1e1b7f5-d26f-4114-abef-9f85f3ad3e51
+DEVICE=ens192
+ONBOOT=yes
+IPADDR=8.1.1.15
+PREFIX=24
+GATEWAY=8.1.1.254
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_PRIVACY=no
+
+
+魏洪锦 
+
+openssl ca -batch -config /etc/pki/messages/ca/openssl.conf -extensions client_ext -in cert.csr -out cert.pem -notext
+
+{"name":"CHANGEME",
+"description":"CHANGEME",
+"environment":"CHANGEME",
+"secret_file":"CHANGEME",
+"run_sequentially":false,
+"nodes": [
+{
+"fqdn":"CHANGEME",
+"password":"CHANGEME",
+"identity_file":"CHANGEME",
+"quit_on_error":true,
+"run_order_number":1,
+"runlist": [
+"role[ibm-os-single-controller-node]",
+"role[ibm-os-powervc-driver-node]",
+"role[ibm-sce-node]"
+]
+}
+]
+}
+
+
+
+
+2015-11-05 17:42:36.667 4508 INFO powervc.common.client.factory [-] start to new local keystone client
+2015-11-05 17:42:36.669 4508 INFO powervc.common.client.factory [-] Keystone service is not ready. There was no suitable authentication url for this request
+2015-11-05 17:42:38.672 4508 INFO powervc.common.client.factory [-] start to new local keystone client
+2015-11-05 17:42:38.674 4508 INFO powervc.common.client.factory [-] Keystone service is not ready. There was no suitable authentication url for this request
+^C
+
+su - rabbitmq -c '/usr/lib/rabbitmq/bin/rabbitmqctl –-help'
+su - rabbitmq -c '/usr/lib/rabbitmq/bin/rabbitmqctl list_users'
+su - rabbitmq -c '/usr/lib/rabbitmq/bin/rabbitmqctl change_password powervcdriver_mq openstack1'
+
+openssl ca -batch -config /etc/pki/messages/ca/openssl.conf -extensions client_ext -in cert.csr -out cert.pem –notext
+
+
+openssl ca -batch -config /etc/pki/messages/ca/openssl.conf -extensions client_ext -in cert.csr -out cert.pem -notext
+
+
+Nov 06 11:45:21 icmpvc nova-powervc[30057]: 2015-11-06 11:45:21.533 30057 INFO nova.openstack.common.periodic_task [-] Skipping periodic task _periodic_update_dns because its interval is negative
+Nov 06 11:45:21 icmpvc nova-powervc[30057]: 2015-11-06 11:45:21.542 30057 INFO powervc.nova.driver.compute.manager [-] Loading compute driver 'powervc.nova.driver.virt.powervc.driv...owerVCDriver'
+Nov 06 11:45:21 icmpvc nova-powervc[30057]: /usr/lib/python2.7/site-packages/novaclient/v1_1/__init__.py:30: UserWarning: Module novaclient.v1_1 is deprecated (taken as a basis for...lient module.
+Nov 06 11:45:21 icmpvc nova-powervc[30057]: warnings.warn("Module novaclient.v1_1 is deprecated (taken as a basis for "
+Nov 06 11:45:21 icmpvc nova-powervc[30057]: 2015-11-06 11:45:21.578 30057 INFO powervc.common.client.factory [-] start to new local keystone client
+Nov 06 11:45:22 icmpvc nova-powervc[30057]: 2015-11-06 11:45:22.766 30057 INFO powervc.common.client.factory [-] Keystone service is not ready. No module named v1.client
+Nov 06 11:45:24 icmpvc nova-powervc[30057]: 2015-11-06 11:45:24.769 30057 INFO powervc.common.client.factory [-] start to new local keystone client
+Nov 06 11:45:25 icmpvc nova-powervc[30057]: 2015-11-06 11:45:25.893 30057 INFO powervc.common.client.factory [-] Keystone service is not ready. No module named v1.client
+Nov 06 11:45:27 icmpvc nova-powervc[30057]: 2015-11-06 11:45:27.896 30057 INFO powervc.common.client.factory [-] start to new local keystone client
+Nov 06 11:45:29 icmpvc nova-powervc[30057]: 2015-11-06 11:45:29.022 30057 INFO powervc.common.client.factory [-] Keystone service is not ready. No module named v1.client
+
+
+su - rabbitmq -c '/usr/lib/rabbitmq/bin/rabbitmqctl set_permissions -p / powervcdriver_mq ".*" ".*" ".*"'
+
+======================================
+deploy with FP2
+
+install GM
+update FP2 directly
+
+knife environment show example-ibmos-single-controller-n-compute -d -Fjson > f2env.json
+
+[root@icmpvc ~]# mkdir -p /root/powervcmq_ssl
+[root@icmpvc ~]# cd /root/powervcmq_ssl/
+[root@icmpvc powervcmq_ssl]# openssl genrsa -out key.pem 2048
+Generating RSA private key, 2048 bit long modulus
+.......+++
+.......+++
+e is 65537 (0x10001)
+[root@icmpvc powervcmq_ssl]# openssl req -new -key key.pem -out cert.csr -subj "/CN=icmpvc Messaging Client/O=PowerVC Driver"
+
+[root@powervc123 powervcmq_ssl]# openssl ca -batch -config /etc/pki/messages/ca/openssl.conf -extensions client_ext -in cert.csr -out cert.pem -notext
+Using configuration from /etc/pki/messages/ca/openssl.conf
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+commonName            :ASN.1 12:'icmpvc Messaging Client'
+organizationName      :ASN.1 12:'PowerVC Driver'
+Certificate is to be certified until Nov  5 08:44:20 2025 GMT (3652 days)
+
+Write out database with 1 new entries
+Data Base Updated
+
+[root@powervc123 powervcmq_ssl]# cp /etc/pki/messages/ca/cacert.pem .
+
+[root@powervc123 powervcmq_ssl]# scp -r /root/powervcmq_ssl/ icmpvc:/root/
+Warning: the ECDSA host key for 'icmpvc' differs from the key for the IP address '8.1.1.19'
+Offending key for IP in /root/.ssh/known_hosts:1
+Matching host key in /root/.ssh/known_hosts:2
+Are you sure you want to continue connecting (yes/no)? yes
+root@icmpvc's password: 
+key.pem                                                                                                                                                           100% 1675     1.6KB/s   00:00    
+cert.csr                                                                                                                                                          100%  944     0.9KB/s   00:00    
+cert.pem                                                                                                                                                          100% 1200     1.2KB/s   00:00    
+cacert.pem     
+
+
+
+Power:
+8.1.1.30
+hmc:
+8.1.1.20
+hscroot/password
+
+
+今天的计划
+2015/11/09
+
+1. 报销 done
+1.1 随机 done
+2. 蓝沧DR的虚拟机部署  
+2.1 投产清单 done
+3. 武汉RCCB的总结邮件 done
+4. BCM
+5. Openstack
+
+
+amy yx wang
+
+2015-11-09 18:08:19.015 1546 ERROR cinder.api.middleware.fault [req-3516117a-33ed-4b27-84a2-b9227626f03c 0c205dbb4b5e4ea9a2704d2909447149 2679d23b169b4059a5e9db6483ed7450 - - -] Caught error: Remote error: Remote error: VolumeBackendAPIException CN-1F54842 Bad or unexpected response from the storage volume backend API: CN-9B75E27 Unable to fetch connection information from backend: NetApp API failed. Reason - 9051:Node name already a member of an initiator group of a different os type
+[u'Traceback (most recent call last):\n', u'  
+File "/usr/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 142, in _dispatch_and_reply\n    executor_callback))\n', u'  
+File "/usr/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 186, in _dispatch\n    executor_callback)\n', u'  
+File "/usr/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 130, in _do_dispatch\n    result = func(ctxt, **new_args)\n', u'  
+File "/usr/lib/python2.7/site-packages/osprofiler/profiler.py", line 105, in wrapper\n    return f(*args, **kwargs)\n', u'  
+File "/usr/lib/python2.7/site-packages/osprofiler/profiler.py", line 105, in wrapper\n    return f(*args, **kwargs)\n', u'  
+File "/usr/lib/python2.7/site-packages/osprofiler/profiler.py", line 105, in wrapper\n    return f(*args, **kwargs)\n', u'  
+File "/usr/lib/python2.7/site-packages/osprofiler/profiler.py", line 105, in wrapper\n    return f(*args, **kwargs)\n', u'  
+File "/usr/lib/python2.7/site-packages/cinder/volume/manager.py", line 1120, in initialize_connection\n    raise exception.VolumeBackendAPIException(data=err_msg)\n', u'VolumeBackendAPIException: 
+CN-1F54842 Bad or unexpected response from the storage volume backend API: 
+CN-9B75E27 Unable to fetch connection information from backend: NetApp API failed. Reason - 9051:Node name already a member of an initiator group of a different os type\n']. None
+None.
+2015-11-09 18:08:19.016 1546 INFO cinder.api.middleware.fault [req-3516117a-33ed-4b27-84a2-b9227626f03c 0c205dbb4b5e4ea9a2704d2909447149 2679d23b169b4059a5e9db6483ed7450 - - -] http://10.0.41.20:8776/v2/2679d23b169b4059a5e9db6483ed7450/volumes/b796dbaf-9a5c-4c2b-928c-8f8901e810f9/action returned with HTTP 500
+
+38357
+
+
+
+
+6214830117755107
+北京市房山区窦店镇城建琨珽5号楼4单元101
+
+
+ICM forum
+
+https://w3-connections.ibm.com/forums/html/forum?id=ba3203cb-eb7b-425f-ad51-819acd0717b5&ps=25
+
+ICM wiki
+
+https://w3-connections.ibm.com/wikis/home?lang=en#!/wiki/IBM%20Cloud%20Manager
+
+ICM internal Wiki (private)
+https://w3-connections.ibm.com/wikis/home?lang=en-us#!/wiki/W6679bce0c060_426b_a74c_941a68933cd1/page/Business%20Engagement
+
+www forum: KB
+https://www.ibm.com/developerworks/community/forums/html/forum?id=975c76df-37a7-43f5-b28b-5a279b880352
+
+Kai Qiang: 
+
+nova for container
+neutron for container
+15236008384
+
+
+数据复制状态监控
+
+virsh list --all
+79    ctl1                           running
+80    ctl2                           running
+81    cn1                            running
+82    cn2                            running
+
+virsh vncdisplay cn2
+TAQ9DiNA
+
+
+perl符号
+
+~ 表示是正则表达式
+-> 读取变量或者防范
+==>
+^ 表示
+
+
+2015/11/15
+1. swift  done
+2. zongjing's cloudbase-init 配置
+3. volume培训ppt //inprogress
+4. openstack DR
+5. Openstack instance back up (snapshot)
+
+
+nova boot --flavor 2 --block_device_mapping vda=860172c9-e92e-40fe-bfce-09b700075758:volume::0 --nic net-id=62e02589-b09a-4869-b66a-2e40a9f26dea newhj2
+
+
+
+yum install collectd collectd-virt perl-Collectd
+
+
+
+yum -y install libcurl libcurl-devel rrdtool rrdtool-devel rrdtool-prel libgcrypt-devel gcc make gcc-c++
+
+
+GETVAL instance-000000b6/libvirt/virt_cpu_total
+instance-000000b6-virt_cpu_total
+collectd-libvirt.cpu["instance-000000b6-virt_cpu_total"]
+/etc/zabbix/scripts/collectd-libvirt/collect-libvirt-handler.pl /var/run/collectd-unixsock GETVAL instance-000000b6-virt_cpu_total
+
+
+Received value [DEBUG: command: 
+GETVAL instance-000000b6/libvirt/virt_cpu_total val: 
+instance-000000b6/libvirt/virt_cpu_total 5666832] 
+is not suitable for value type [Numeric (unsigned)] and data type [Decimal]
+
+Received value [DEBUG: command: 
+GETVAL instance-000000b6/libvirt/virt_cpu_total val: 
+instance-000000b6/libvirt/virt_cpu_total 2333401] 
+is not suitable for value type [Numeric (float)]
+Received value [DEBUG: command: 
+GETVAL instance-000000b6/libvirt/virt_cpu_total val: 
+instance-000000b6/libvirt/virt_cpu_total 2166650] 
+is not suitable for value type [Numeric (float)]
+
+
+Internal check is not supported.
+
+collectd-libvirt.cpu.discovery
+
+
+11/23
+每周一, 11am 三 3pm 五11am
+
+
+1. send binhai case Material
+2. send self-intro
+3. chenxiong, zhuoran
+
+云天福地大胜归来
+solution
+保证数据安全性, 这个cloud solution就是属于客户的花果山, 
+
+简历简单的, 没问题
+
+核心的思想, 摘要
+1. 云服务队客户的价值
+行业背景,行业趋势
+客户的行为体现了趋势的要求
+(了解目前国内行业的现状, )
+2. 天津case的故事,  -- 重点 
+
+联系相关人员 (段鑫峒, 臻号)
+
+天津市滨海新区公安局系统建设项目是由IBM Cloud部门牵手System部门共同打造的基于IBM Cloud Manager的云及大数据，快速整合各类警务系统，推动公安信息化建设的公安系统统一平台，实现了公安信息的快速整理，共享，方便得警员的工作，为领导层快速准确作决策提供数据信息支撑。
+
+
+CDL在云战略方向上的发展.
+3. 我们的solution的特征
+
+4. 合, 我们未来要注重服务于国内客户,利用IBM CDL的强大技术实力为客户服务
+
+
+排练, 北京meeting room, 15分钟
+
+
+profile:  name, notesid, job role, 
+
+背景音乐
+视频资料（有一个，时长大概一分钟的）
+大圣归来的音乐
+
+
+PPT架构我来做 今天来做， 从wiki上起步
+
+PPT加工润色方面由tangying来做
+
+安排老板们来听下， 提意见， 改进
+
+每天多碰头
+
+周五再集体碰头
+
+
+
+
+
+
+
+
+
+
+
+为了更好的服务客户，需要找到一些市场方面的材料。 
+
+8到10分钟
+
+
+起:  天津港爆炸　视频资料，　其他行业的人如何讲故事的？
+承:  公安人员第一时间的工作, 驰援千里
+转:  ＩＢＭ云服务
+合:　
+
+下午工作安排
+１．　１ｐｍ　ｌｉｕｈｕａｎｇ　ｒｕｏｂｉｎ
+２．　ｉｎｔｅｒｖｉｅｗ
+３．　３ｐｍ　ｃｈｅｎｘｉｏｎｇ　等
+４．　准备ｐｒｏｆｉｌｅ，　资料等
+
+1. 云平台上的数据与应用分离,具体讲数据库服务,数据服务均单独设计,独立运行于性能更可靠的power服务器,而应用服务器则运行于虚拟化成熟的Openstack支持的kvm上
+2. 应用的模块化部署支持客户应用顺利迁移到云上
+3. 增强的虚拟服务器调度策略，保证用户工作负载在云平台上的可靠运行，实现7x24不间断服务
+4. 统一的存储服务方案与规划,保证了高性能运算的存储需求以及云平台建设对存储的多样化需求
+5. 云平台上主要运行的应用有公安部门的情报采集， 视频数据监控，DNA分析，网络安全
+6. 独到的网络设计方案完全契合了公安类客户对于云平台的特殊需求
+7. 该项目经过与platform computing, GPFS大力协作,以及现场人员的努力工作实现了快速,高效的上线
+
+在突发的灾难面前， 人类的力量显得那么渺小。 如果我们可以利用有效的手段提前布局，快速应对，可以把灾难造成的损失降到最小，挽救更多的国家财产，拯救更多的生命。云计算，大数据无疑是当下最成熟高效的系统解决方案。当下Google， Amzone，EMS，HP以及催生的大量提供云计算服务的创业公司更是甚嚣尘上。 最早提出了云计算和大数据的概念，并最早进入中国云计算市场的IBM难道真的像被封印的大圣一样，失去了当日的魔力了吗？答案无疑是否定的， IBM Cloud IaaS Lab协同System为客户打造的大数据云平台证明了这个百年老店依然是客户背后的守护神，仍然是那个神通广大的归来大圣 ！
+
+在突发的灾难面前， 人类的力量显得那么渺小。 如果我们可以利用有效的手段提前布局，快速应对，可以把灾难造成的损失降到最小，挽救更多的国家财产，拯救更多的生命。云计算，大数据无疑是当下最成熟高效的系统解决方案。当下Google， Amzone，EMS，HP以及催生的大量提供云计算服务的创业公司更是甚嚣尘上。 最早提出了云计算和大数据的概念，并最早进入中国云计算市场的IBM难道真的像被封印的大圣一样，失去了当日的魔力了吗？答案当然是否定的， IBM Cloud IaaS Lab协同System为客户打造的大数据云平台证明了这个百年老店依然是客户背后的守护神，仍然是那个神通广大的归来大圣 ！
+
+
+FJ RCCB：
+
+immediately request is we need a deep tech exchange of OpenStack Landing experience sharing,  that is key to SET customer expectation and show our muscle.
+
+Ming Can，
+
+I agreed we can start to prepare materials for the technical exchange. Our IaaS Lab has successfully deliver IBM Cloud Manager to many customer, 
+I think we do have some solution architectures in hand can be shared to to them.  And the below can be a reference point we can think with customer together:
+
+1. Integrate all different compute resource into one platform, vary from PowerVM/PowerKVM to  x86/kvm and x86/vmware
+2. How to plan storage in an openstack based cloud environment. 
+3. Utilize openstack's heat to help scale user's workload and also help customer customize their workload and application
+4. Analysis customer's application, to help them migrate to cloud with more efficiency 
+5. Help user to integrate more complicated network element into openstack
+
+it's welome for you to add more speicial request from this customer, we can discuss this firstly.
+
+Thanks and All the Best
+--Hongjin
+
+
+
+
+
+[Thu Nov 26 00:06:14.885933 2015] [authz_core:error] [pid 21999] [client 9.181.88.178:59497] AH01630: client denied by server configuration: /usr/lib/python2.7/dist-packages, referer: https://9.5.47.42/project/networks/
+[Thu Nov 26 05:06:30.431981 2015] [:error] [pid 21985] The settings.py file points to a v2.0 keystone endpoint, but v3 is specified as the API version to use. Using v3 endpoint for authentication.
+[Thu Nov 26 00:06:31.210689 2015] [authz_core:error] [pid 22001] [client 9.181.88.178:59508] AH01630: client denied by server configuration: /usr/lib/python2.7/dist-packages, referer: https://9.5.47.42/project/networks/
+/usr/lib/python2.7/sist-packages
+
+virt-install  --name rhel71 --ram 1024 \
+--cdrom=/home/rhel-server-7.1-x86_64-dvd.iso \
+--bridge=br0,model=virtio \
+--disk /home/rhel71.qcow2,format=qcow2 \
+--graphics vnc,listen=0.0.0.0 \
+--os-type=linux --os-variant=rhel7
+
+
+
+DRCS:
+
+
+
+[root@ctlr2 ~]# neutron net-show c50-net-01
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 5bf1dc8c-575c-4e6d-a0bc-7a4cfd351f38 |
+| mtu                       | 0                                    |
+| name                      | c50-net-01                           |
+| provider:network_type     | vxlan                                |
+| provider:physical_network |                                      |
+| provider:segmentation_id  | 1040                                 |
+| router:external           | False                                |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   | 218b6942-6d38-420b-93c1-4ef193a95bb4 |
+| tenant_id                 | 2679d23b169b4059a5e9db6483ed7450     |
++---------------------------+--------------------------------------+
+[root@ctlr2 ~]# neutron net-show chef-c50-net
++---------------------------+--------------------------------------+
+| Field                     | Value                                |
++---------------------------+--------------------------------------+
+| admin_state_up            | True                                 |
+| id                        | 3f2149b4-7eb2-4e19-bde1-0b965f17214a |
+| mtu                       | 0                                    |
+| name                      | chef-c50-net                         |
+| provider:network_type     | vlan                                 |
+| provider:physical_network | default                              |
+| provider:segmentation_id  | 1050                                 |
+| router:external           | False                                |
+| shared                    | False                                |
+| status                    | ACTIVE                               |
+| subnets                   | dd321c5c-ec69-4896-add0-096f49c5b909 |
+| tenant_id                 | 2679d23b169b4059a5e9db6483ed7450     |
++---------------------------+--------------------------------------+
+
+
+ip netns exec qdhcp-12a77681-6b89-462b-b091-d051244232c3 tcpdump -i tap0e65e5a3-10 -ne
+
+
+Wed Dec  2 14:28:37 CST [FAS2240-2:lun.vdisk.spaceReservationNotHonored:notice]: 
+Space reservations in customer2 are not being honored, either because the volume space guarantee is set to 'none' or the guarantee is currently disabled due to lack of space in the aggregate.
+
+
+41.21
+
+iqn.1991-05.com.microsoft:dgkx6q52-server11-target
+
+10.0.0.21
+iqn.1992-08.com.netapp:sn.1787478016
+
+登录到 vmhba38 上的 iSCSI 目标 
+iqn.1992-08.com.netapp:sn.1787478016 
+失败。iSCSI 启动器无法建立到目标的网络连
+接。
+错误
+2015/12/2 19:30:48
+10.0.41.12
+iqn.1998-01.com.vmware:55cd5697-2d76-fedc-123f-ecf4bbda62f0-6e50c2cb
+
+
+联系jia ying chen确认培训的时间和方式.

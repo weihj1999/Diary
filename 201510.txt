@@ -1,0 +1,449 @@
+http://autoproxy.au.ibm.com/hk1.pac
+
+游乐会: 皇冠假日酒店
+538197459
+
+
+https://blackanger.gitbooks.io/tao-of-chef/content/chapter_6_chef_server_webui/rest_api.html
+
+echo $?
+
+{
+    "cloud": {
+        "template": "minimal_kvm_x86",
+        "hypervisorType": "x86 KVM",
+        "name": "test",
+        "description": "test",
+        "services": {
+            "database": "mariadb",
+            "messaging": "rabbitmq"
+        },
+        "features": {
+            "selfServicePortal": "disabled",
+            "platformResourceScheduler": "disabled"
+        }
+    },
+    "nodes": {
+        "controller": {
+            "isHAControllers": false,
+            "fqdn": "test2.tstpod.slancer.com",
+            "password": "Passw0rd",
+            "nics": {
+                "management": "ens32",
+                "data": "ens34"
+            }
+        }，
+         "app1": {
+            "isHAControllers": false,
+            "fqdn": "test2.tstpod.slancer.com",
+            "password": "Passw0rd",
+            "nics": {
+                "management": "ens32",
+                "data": "ens34"
+            }
+        }
+        
+    }
+}
+
+
+
+Initializing...
+Verifying cloud nodes...
+Writing environment configuration file...
+Setting the cloud environment on the Chef server...
+Using environment configuration file '/root/icm/clouds/test_2015-10-04_212856/test_env.yml'
+Setting environment 'test'.
+The environment 'test' already exists on the chef server.
+The existing chef server environment 'test' will be modified, and overwritten.
+All environment attributes have been updated.
+Environment 'test' saved to the chef server
+Resolving node network settings...
+Writing topology JSON file...
+Deploying the cloud topology...
+Deploying topology 'test' ...
+Deploying to nodes with run_order_number '4'
+Bootstraping nodes with environment test...
+Bootstrapping node minimal...
+Doing old-style registration with the validation key at /root/.chef/ibm-validator.pem...
+Delete your validation key in order to use your user credentials instead
+Connecting to test2.tstpod.slancer.com
+test2.tstpod.slancer.com Starting Chef Client on Node
+test2.tstpod.slancer.com Bootstrapping Node
+test2.tstpod.slancer.com Completed with Error
+ERROR: An error occurred processing node 'minimal' at test2.tstpod.slancer.com: Ssh execution of command 'bash -c '; exists() {;   if command -v $1 ... :[]}; EOP; chef-client -j /etc/chef/first-boot.json -E test'' failed with exit status '1'. Node 'test2.tstpod.slancer.com' failed: Failed to authenticate to the chef server (http 401).. See the log file '/var/log/icm-deployer/nodes/test2.tstpod.slancer.com_2015-10-04_21-36-03-327072853000.log' for more information.
+ERROR: /root/.chef/plugins/knife/os_manage_ssh.rb:228:in `run'
+/opt/chef/embedded/apps/chef/lib/chef/knife/bootstrap.rb:332:in `run'
+/root/.chef/plugins/knife/os_manage_deploy.rb:206:in `node_bootstrap_ssh'
+/root/.chef/plugins/knife/os_manage_deploy.rb:166:in `node_bootstrap'
+/root/.chef/plugins/knife/os_manage_deploy_topology.rb:448:in `block (3 levels) in deploy_nodes_in_parallel'
+/root/.chef/plugins/knife/os_manage_deploy_topology.rb:380:in `block (2 levels) in process_nodes_in_parallel'
+All nodes for environment test bootstrapped.
+Deploying bootstrapped nodes with run_order_number '4'...
+All bootstrapped nodes with run_order_number '4' deployed.
+Results for deploy of topology 'test'
+Results for nodes with run_order_number '4'
+Deploy of node 'minimal' at test2.tstpod.slancer.com failed: Ssh execution of command 'bash -c '; exists() {;   if command -v $1 ... :[]}; EOP; chef-client -j /etc/chef/first-boot.json -E test'' failed with exit status '1'. Node 'test2.tstpod.slancer.com' failed: Failed to authenticate to the chef server (http 401).. See the log file '/var/log/icm-deployer/nodes/test2.tstpod.slancer.com_2015-10-04_21-36-03-327072853000.log' for more information.
+Deploy of topology '/root/icm/clouds/test_2015-10-04_212856/test_topology.json' completed in 3 seconds.
+
+route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
+
+ovs-vsctl add-port br-data storage
+ovs-vsctl set interface storage type=internal
+ovs-vsctl set port storage tag=900
+ip addr add 10.0.0.16/24 brd 10.0.0.255 dev storage
+ovs-vsctl set port storage vlan_mode=native-untagged
+ip link set dev storage up
+route add -net 10.0.0.0/24 dev storage
+ping 10.0.0.20
+
+
+PM20-74DFA-ADA4D-8C116
+PM20-74DFA-ADA4D-8C116
+
+
+[lvmdriver-1]
+volume_group=cinder-volumes-1
+volume_driver=cinder.volume.drivers.lvm.LVMISCSIDriver
+volume_backend_name=LVM_iSCSI
+
+cinder type-create customer1
+cinder type-create customer2
+cinder type-create customer3
+cinder type-key customer1 set volume_backend_name=customer1
+cinder type-key customer2 set volume_backend_name=customer2
+cinder type-key customer3 set volume_backend_name=customer3
+cinder create --volume-type customer1 --name test1 1
+cinder create --volume-type customer2 --name test1 2
+cinder create --volume-type customer3 --name test1 3
+
+/vol/customer1/volume-20d5e23b-7536-4ace-a19f-fe10b61dc8de
+
+cinder manage --source-name /vol/customer1/volume-20d5e23b-7536-4ace-a19f-fe10b61dc8de ctlr1.tstpod.slancer.com@customer1#pool
+
+
+[['user', 'root root'], ['worker_processes', '1'], ['error_log', 'logs/error.log'], ['pid', 'logs/nginx.pid'], ['worker_rlimit_nofile', '65535'], [['events'], [['use', 'epoll'], ['worker_connections', '1024']]], [['http'], [['include', 'mime.types'], ['default_type', 'application/octet-stream'], ['server_names_hash_bucket_size', '128'], ['client_header_buffer_size', '32k'], ['large_client_header_buffers', '4 32k'], ['client_max_body_size', '8m'], ['sendfile', 'on'], ['tcp_nopush', 'on'], ['keepalive_timeout', '60'], ['tcp_nodelay', 'on'], ['gzip', 'on'], ['gzip_min_length', '1k'], ['gzip_buffers', '4 16k'], ['gzip_http_version', '1.0'], ['gzip_comp_level', '2'], ['gzip_types', 'text/plain application/x-javascript text/css application/xml'], ['gzip_vary', 'on'], ['server_tokens', 'off'], [['upstream', 'web'], [['server', '10.0.11.9:80 weight=5 '], ['server', '10.0.11.8:80 weight=10 ']]], [['server'], [['listen', '80'], ['server_name', '10.0.11.18'], [['location', '/'], [['root', 'html'], ['index', 'index.html index.htm'], ['proxy_redirect', 'off'], ['proxy_set_header', 'Host $host'], ['proxy_set_header', 'X-Real-IP $remote_addr'], ['proxy_set_header', 'X-Forwarded-For $proxy_add_x_forwarded_for'], ['proxy_pass', 'http://web']]], ['error_page', '500 502 503 504  /50x.html'], [['location', '=', '/50x.html'], [['root', 'html']]]]]]]]
+
+
+install pyparsing
+install nginxparser
+
+
+            
+qrouter-13cfed47-a7fa-47d2-8e4d-de26ca5bb9f9
+qrouter-36e2f5ad-7c57-411b-a005-a4e95ff4e8df
+
+www.linuxidc.com
+
+上海出差, 以客户名义
+
+姜喆, 陈曦
+
+deployer的transfer
+
+两周:
+
+
+2015-10-13 16:16:16.255 29359 INFO cinder.api.openstack.wsgi [req-4e650a49-bdda-47e6-87ae-b4060e49154f 7e3e900f8cb54df2b004fea1f564180a a31708d374e042ef9cbe18e6d67e4587 - - -] POST http://10.0.41.19:8776/v2/a31708d374e042ef9cbe18e6d67e4587/os-volume-manage
+2015-10-13 16:16:16.383 29359 INFO cinder.api.openstack.wsgi [req-4e650a49-bdda-47e6-87ae-b4060e49154f 7e3e900f8cb54df2b004fea1f564180a a31708d374e042ef9cbe18e6d67e4587 - - -] http://10.0.41.19:8776/v2/a31708d374e042ef9cbe18e6d67e4587/os-volume-manage returned with HTTP 202
+2015-10-13 16:16:16.386 29359 INFO eventlet.wsgi.server [req-4e650a49-bdda-47e6-87ae-b4060e49154f 7e3e900f8cb54df2b004fea1f564180a a31708d374e042ef9cbe18e6d67e4587 - - -] 10.0.41.19 - - [13/Oct/2015 16:16:16] "POST /v2/a31708d374e042ef9cbe18e6d67e4587/os-volume-manage HTTP/1.1" 202 986 0.298439
+2015-10-13 16:16:16.428 29359 INFO cinder.api.openstack.wsgi [req-607270f9-ace5-4769-9de3-cd2901a2be72 7e3e900f8cb54df2b004fea1f564180a a31708d374e042ef9cbe18e6d67e4587 - - -] GET http://10.0.41.19:8776/v2/a31708d374e042ef9cbe18e6d67e4587/volumes/0e8681b3-e88d-469a-a32c-6e0670c2af91
+2015-10-13 16:16:16.884 29359 INFO cinder.api.openstack.wsgi [req-607270f9-ace5-4769-9de3-cd2901a2be72 7e3e900f8cb54df2b004fea1f564180a a31708d374e042ef9cbe18e6d67e4587 - - -] http://10.0.41.19:8776/v2/a31708d374e042ef9cbe18e6d67e4587/volumes/0e8681b3-e88d-469a-a32c-6e0670c2af91 returned with HTTP 200
+2015-10-13 16:16:16.886 29359 INFO eventlet.wsgi.server [req-607270f9-ace5-4769-9de3-cd2901a2be72 7e3e900f8cb54df2b004fea1f564180a a31708d374e042ef9cbe18e6d67e4587 - - -] 10.0.41.19 - - [13/Oct/2015 16:16:16] "GET /v2/a31708d374e042ef9cbe18e6d67e4587/volumes/0e8681b3-e88d-469a-a32c-6e0670c2af91 HTTP/1.1" 200 1287 0.464238
+
+
+2015-10-13 16:46:32.719 20475 ERROR cinder.scheduler.manager [req-6af30aeb-9304-4a7d-85e0-60111783351a 7e3e900f8cb54df2b004fea1f564180a a31708d374e042ef9cbe18e6d67e4587 - - -] CN-FD15914 Failed to schedule_manage_existing: CN-67B7376 No valid host was found. CN-9F0FF99 Cannot place volume 4c0ffd91-96b4-407c-9c81-8b99b10338fa on ctlr2.tstpod.slancer.com@customer2
+
+messos
+
+    def manage_existing(self, volume, existing_ref):
+        return self.library.manage_existing(volume, existing_ref)
+        
+    def host_passes_filters(self, context, host, request_spec,
+                            filter_properties):
+        """Check if the specified host passes the filters."""
+        weighed_hosts = self._get_weighted_candidates(context, request_spec,
+                                                      filter_properties)
+        for weighed_host in weighed_hosts:
+            host_state = weighed_host.obj
+            if host_state.host == host:
+                return host_state
+
+        msg = (_('Cannot place volume %(id)s on %(host)s')
+               % {'id': request_spec['volume_id'], 'host': host})
+        raise exception.NoValidHost(reason=msg)
+
+    def _get_weighted_candidates(self, context, request_spec,
+                                 filter_properties=None):
+        """Returns a list of hosts that meet the required specs,
+        ordered by their fitness.
+        """
+        elevated = context.elevated()
+
+        volume_properties = request_spec['volume_properties']
+        # Since Cinder is using mixed filters from Oslo and it's own, which
+        # takes 'resource_XX' and 'volume_XX' as input respectively, copying
+        # 'volume_XX' to 'resource_XX' will make both filters happy.
+        resource_properties = volume_properties.copy()
+        volume_type = request_spec.get("volume_type", None)
+        resource_type = request_spec.get("volume_type", None)
+        request_spec.update({'resource_properties': resource_properties})
+
+        config_options = self._get_configuration_options()
+
+        if filter_properties is None:
+            filter_properties = {}
+        self._populate_retry(filter_properties, resource_properties)
+
+        filter_properties.update({'context': context,
+                                  'request_spec': request_spec,
+                                  'config_options': config_options,
+                                  'volume_type': volume_type,
+                                  'resource_type': resource_type})
+
+        self.populate_filter_properties(request_spec,
+                                        filter_properties)
+
+        # If multiattach is enabled on a volume, we need to add
+        # multiattach to extra specs, so that the capability
+        # filtering is enabled.
+        multiattach = volume_properties.get('multiattach', False)
+        if multiattach and 'multiattach' not in resource_type.get(
+                'extra_specs', {}):
+            if 'extra_specs' not in resource_type:
+                resource_type['extra_specs'] = {}
+
+            resource_type['extra_specs'].update(
+                multiattach='<is> True')
+
+        # Find our local list of acceptable hosts by filtering and
+        # weighing our options. we virtually consume resources on
+        # it so subsequent selections can adjust accordingly.
+
+        # Note: remember, we are using an iterator here. So only
+        # traverse this list once.
+        hosts = self.host_manager.get_all_host_states(elevated)
+
+        # Filter local hosts based on requirements ...
+        hosts = self.host_manager.get_filtered_hosts(hosts,
+                                                     filter_properties)
+
+    def _log_volume_error(self, volume_id, retry):
+        """If the request contained an exception from a previous volume
+        create operation, log it to aid debugging
+        """
+        exc = retry.pop('exc', None)  # string-ified exception from volume
+        if not exc:
+            return  # no exception info from a previous attempt, skip
+
+        hosts = retry.get('hosts', None)
+        if not hosts:
+            return  # no previously attempted hosts, skip
+
+        last_host = hosts[-1]
+        msg = _("Error scheduling %(volume_id)s from last vol-service: "
+                "%(last_host)s : %(exc)s") % {
+                    'volume_id': volume_id,
+                    'last_host': last_host,
+                    'exc': exc,
+        }
+        LOG.error(msg)
+
+
+
+
+volume-6816c0f2-379a-44cd-a6dc-e14e5c278530
+			 cd1f078e-c83d-4593-a467-8c92736e9369
+#cinder manage --source-name /vol/customer1/volume-6816c0f2-379a-44cd-a6dc-e14e5c278530   ctlr2.tstpod.slancer.com@customer1#customer1
+
+glance image-create --name "rhel6u5-vmdk" --disk-format vmdk \
+--container-format bare \
+--property vmware_disktype="sparse" --progress < /home/rhel6u5.vmdk
+ b8ff6605-718f-4a61-bd13-d2a02d4ee6c6
+
+[root@ctlr1 ~]# nova help boot
+usage: nova boot [--flavor <flavor>] [--image <image>]
+                 [--image-with <key=value>] [--boot-volume <volume_id>]
+                 [--snapshot <snapshot_id>] [--min-count <number>]
+                 [--max-count <number>] [--meta <key=value>]
+                 [--file <dst-path=src-path>] [--key-name <key-name>]
+                 [--user-data <user-data>]
+                 [--availability-zone <availability-zone>]
+                 [--security-groups <security-groups>]
+                 [--block-device-mapping <dev-name=mapping>]
+                 [--block-device key1=value1[,key2=value2...]]
+                 [--swap <swap_size>]
+                 [--ephemeral size=<size>[,format=<format>]]
+                 [--hint <key=value>]
+                 [--nic <net-id=net-uuid,v4-fixed-ip=ip-addr,v6-fixed-ip=ip-addr,port-id=port-uuid>]
+                 [--config-drive <value>] [--poll]
+                 <name>
+nova boot --flavor 6 --image rhel6u5-vmdk --nic net-id=b9de92b9-4722-4dcc-9e24-2e743b18e307 dr-vm1
+
+
+
+kvm
+
+Boot a new server.
+
+SOW
+
+
+2015-10-17 10:01:09.890 29819 ERROR oslo_messaging._drivers.common [req-f1c112e6-8c98-4433-9123-f84d2c55e4d7 779e276ad0264bc39f34fbfcfd03a22b f5bccfe0a0de42729b9aed1fe6fa9eab - - -] 
+
+Returning exception CN-1F54842 Bad or unexpected response from the storage volume backend API: CN-9B75E27 Unable to fetch connection information from backend: NetApp API failed. Reason - 9006:Not a valid iSCSI node name to caller
+2015-10-17 10:01:09.891 29819 ERROR oslo_messaging._drivers.common [req-f1c112e6-8c98-4433-9123-f84d2c55e4d7 779e276ad0264bc39f34fbfcfd03a22b f5bccfe0a0de42729b9aed1fe6fa9eab - - -] ['Traceback (most recent call last):\n', '  
+File "/usr/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 142, in _dispatch_and_reply\n    executor_callback))\n', '  
+File "/usr/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 186, in _dispatch\n    executor_callback)\n', '  
+File "/usr/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 130, in _do_dispatch\n    result = func(ctxt, **new_args)\n', '  
+File "/usr/lib/python2.7/site-packages/osprofiler/profiler.py", line 105, in wrapper\n    return f(*args, **kwargs)\n', '  
+File "/usr/lib/python2.7/site-packages/osprofiler/profiler.py", line 105, in wrapper\n    return f(*args, **kwargs)\n', '  
+File "/usr/lib/python2.7/site-packages/cinder/volume/manager.py", line 1120, in initialize_connection\n    
+raise exception.VolumeBackendAPIException(data=err_msg)\n', 
+'VolumeBackendAPIException: CN-1F54842 Bad or unexpected response from the storage volume backend API: CN-9B75E27 Unable to fetch connection information from backend: NetApp API failed. Reason - 9006:Not a valid iSCSI node name\n']
+
+virt-top
+
+2015-10-17 11:46:28.131 29819 ERROR cinder.volume.manager [req-3e3971da-555f-4e43-a916-42713d1c467c 779e276ad0264bc39f34fbfcfd03a22b f5bccfe0a0de42729b9aed1fe6fa9eab - - -] CN-9B75E27 Unable to fetch connection information from backend: NetApp API failed. Reason - 9006:Not a valid iSCSI node name
+2015-10-17 11:46:28.132 29819 ERROR oslo_messaging.rpc.dispatcher [req-3e3971da-555f-4e43-a916-42713d1c467c 779e276ad0264bc39f34fbfcfd03a22b f5bccfe0a0de42729b9aed1fe6fa9eab - - -] Exception during message handling: CN-1F54842 Bad or unexpected response from the storage volume backend API: CN-9B75E27 Unable to fetch connection information from backend: NetApp API failed. Reason - 9006:Not a valid iSCSI node name
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher Traceback (most recent call last):
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher   File "/usr/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 142, in _dispatch_and_reply
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher     executor_callback))
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher   File "/usr/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 186, in _dispatch
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher     executor_callback)
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher   File "/usr/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 130, in _do_dispatch
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher     result = func(ctxt, **new_args)
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher   File "/usr/lib/python2.7/site-packages/osprofiler/profiler.py", line 105, in wrapper
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher     return f(*args, **kwargs)
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher   File "/usr/lib/python2.7/site-packages/osprofiler/profiler.py", line 105, in wrapper
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher     return f(*args, **kwargs)
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher   File "/usr/lib/python2.7/site-packages/cinder/volume/manager.py", line 1120, in initialize_connection
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher     raise exception.VolumeBackendAPIException(data=err_msg)
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher VolumeBackendAPIException: CN-1F54842 Bad or unexpected response from the storage volume backend API: CN-9B75E27 Unable to fetch connection information from backend: NetApp API failed. Reason - 9006:Not a valid iSCSI node name
+2015-10-17 11:46:28.132 29819 TRACE oslo_messaging.rpc.dispatcher 
+
+=======================
+安全组调研
+
+DEBUG (session:195) REQ: curl -g -i -X POST http://10.0.41.19:8774/v2/2679d23b169b4059a5e9db6483ed7450/os-security-groups -H "User-Agent: python-novaclient" -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token: {SHA1}f0b62c68d89f2b05b769710675b3a1c47e22f1fd" -d '{"security_group": {"name": "testhj", "description": "test by hj"}}'
+
+DEBUG (session:195) REQ: curl -g -i -X POST http://10.0.41.19:8774/v2/2679d23b169b4059a5e9db6483ed7450/os-security-group-rules -H "User-Agent: python-novaclient" -H "Content-Type: application/json" -H "Accept: application/json" -H "X-Auth-Token: {SHA1}b6396d8f618a2d1f7bbff019b75488328a2485d4" -d '{"security_group_rule": {"from_port": 22, "ip_protocol": "tcp", "to_port": 22, "parent_group_id": "6f179636-7b27-41b0-9d81-4f95476ff33f", "cidr": "0.0.0.0/0", "group_id": null}}'
+
+
+
+
+
+
+
+
+
+
+
+
+
+2015-10-22 13:33:43.447 31135 DEBUG cinder.volume.drivers.netapp.dataontap.block_base [req-bde0f404-78ed-403e-bcba-b2a4d41e580a 779e276ad0264bc39f34fbfcfd03a22b f5bccfe0a0de42729b9aed1fe6fa9eab - - -] CN-57A743E Unmapped LUN volume-679f6b7e-30c6-46c2-9dd7-569794ef02ec from the initiator iqn.1998-01.com.vmware:55cd5697-2d76-fedc-123f-ecf4bbda62f0-6e50c2cb terminate_connection_iscsi /usr/lib/python2.7/site-packages/cinder/volume/drivers/netapp/dataontap/block_base.py:671
+2015-10-22 13:33:43.448 31135 DEBUG oslo_messaging._drivers.amqp [req-bde0f404-78ed-403e-bcba-b2a4d41e580a 779e276ad0264bc39f34fbfcfd03a22b f5bccfe0a0de42729b9aed1fe6fa9eab - - -] UNIQUE_ID is 1df9aa3e8d0d4657937753fa1f7cfaf2. _add_unique_id /usr/lib/python2.7/site-packages/oslo_messaging/_drivers/amqp.py:264
+2015-10-22 13:33:43.452 31135 DEBUG oslo_messaging._drivers.amqp [req-bde0f404-78ed-403e-bcba-b2a4d41e580a 779e276ad0264bc39f34fbfcfd03a22b f5bccfe0a0de42729b9aed1fe6fa9eab - - -] UNIQUE_ID is 74fa71f7cb03473fbe2b936915b83efe. _add_unique_id /usr/lib/python2.7/site-packages/oslo_messaging/_drivers/amqp.py:264
+
+62e02589-b09a-4869-b66a-2e40a9f26dea
+
+
+
+
+virt-install --name yumas --vcpus 2 --memory 4096 \
+--disk /home/w2k12.qcow2  --cdrom /home/cn_windows_server_2008_r2_x64_dvd.iso \
+--network bridge=br0 --graphics vnc,listen=0.0.0.0 --os-type=linux \
+--os-variant=rhel7
+
+使用osinfo-query os来查看os-variant列表
+
+
+/etc/cinder/shares.conf
+
+
+
+各个BU的contest
+举办方:
+参与者:  hongjin  chenxiong, zhuoran
+
+CDL的技术大扫荡
+Ｃａｒｏｌ
+
+
+以技术为主的演讲比赛, (比较欢迎娱乐性的元素, Optional)
+
+CDL core member:　Sponsor，
+Ｍａｔｔ　Ｗａｎｇ
+
+比赛时间８－１０分钟，　　ｐｐｔ
+奖金：　
+
+主题：　＜＞
+支持的材料
+查找资料
+
+
+Leading technology 技术的先进性
+Key impact on industry or customers对市场对行业对客户潜在的益处
+CDL's support 切实可行的技术支持(enable)
+
+
+
+２３号
+报名所需的材料:
+性能，ｎｏｔｅｓ，　ｉｄ，　ｓｅｌｆ－ｉｎｔｒｏｄｕｃｔｉｏｎ
+100-150 words brief
+礼拜二，　上交报名表
+之后组织预演　
+给老板们彩排下
+
+
+
+
+验收
+政采：　好的需求催生好的方案　（政采专家评述）　－－很重要
+
+网络设计：　　公安部门的特殊需求　
+实现的历程，　
+
+计算设计： 数据与应用的分离, 由更高效
+
+
+
+
+
+
+
+
+
+
+便携的工作负载
+
+一致拥护体验
+
+
+未能锁定文件
+无法打开磁盘“/vmfs/volumes/565d6723-67964ed4-e227-ecf4bbda66c8/msServerFri Dec 11 04_15_46 CST 2015-0f06913e-9e22-42ae-8dd9-9467ded2c169/msServerFri Dec 11 04_15_46 CST 2015-0f06913e-9e22-42ae-8dd9-9467ded2c169_1.vmdk”或其所依赖的快照磁盘之一。 
+无法打开 scsi0:1 电源。 
+未能添加磁盘 scsi0:1。
+
+#volume_drivers=iscsi=nova.virt.libvirt.volume.LibvirtISCSIVolumeDriver,iser=nova.virt.libvirt.volume.LibvirtISERVolumeDriver,local=nova.virt.libvirt.volume.LibvirtVolumeDriver,fake=nova.virt.libvirt.volume.LibvirtFakeVolumeDriver,rbd=nova.virt.libvirt.volume.LibvirtNetVolumeDriver,sheepdog=nova.virt.libvirt.volume.LibvirtNetVolumeDriver,nfs=nova.virt.libvirt.volume.LibvirtNFSVolumeDriver,aoe=nova.virt.libvirt.volume.LibvirtAOEVolumeDriver,glusterfs=nova.virt.libvirt.volume.LibvirtGlusterfsVolumeDriver,fibre_channel=nova.virt.libvirt.volume.LibvirtFibreChannelVolumeDriver,scality=nova.virt.libvirt.volume.LibvirtScalityVolumeDriver
+
+
+通过将目录服务器配置为拒绝不请求签名(完整性验证)的 SASL (协商式、Kerberos、NTLM 或摘要式) LDAP 绑定和在明文(非 SSL/TLS 加密的)连接上执行的 LDAP 简单绑定，可以显著增强此服务器的安全性。即使没有任何客户端使用这 样的绑定，将该服务器配置为拒绝这样的绑定也将提高此服务器的安全性。  
+ 
+某些客户端可能当前依赖于非 SSL/TLS 连接上的未签名 SASL 绑定或 LDAP 简单绑定，并将在进行此配置更改时停 止工作。如果发生这样的绑定，为了协助识别这些客户端，此目录服务器将每 24 小时记录一次摘要事件，显示出现此 类绑定的数量。建议将那些客户端配置为不使用这样的绑定。一旦太长时间没有观察到这样的事件，则建议将该服务 器配置为拒绝这样的绑定。  
+ 
+有关如何对服务器进行此配置更改的详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=87923。 
+ 
+您可以启用其他日志记录以在每次客户端进行这样的绑定时记录一个事件，其中包括关于哪个客户端进行该绑定的 信息。要执行此操作，请将“LDAP 界面事件”事件日志记录类别的设置提升至级别 2 或更高。
+
+按照产品线排布优先级，每条产品线内需要给出以下内容：
+产品名称
+优化功能，调整原因
+新增功能，调整原因
+资源需求
+核心架构难要点与技术难要点
+时间表
+
+三边工程 

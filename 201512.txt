@@ -1,0 +1,374 @@
+http://autoproxy.au.ibm.com/hk1.pac
+https://tstbluepages.mkm.can.ibm.com/password/vendor/auth/login.wss?code=pr_otr_china_test
+
+
+Expectation on both China development and sale team
+
+As you may know, Steve has an exciting week here in China, joined the Oct.15 Technology Partnership Forum,and visited many business partners ,etc. In this video blog, Steve shared his expectation on both China development team and sales team. And Mark Hanny, VP of Business development and ISVs, Global Business Partners joined Steve for the video blog. For "Unleashing the Labs", CDL will unleash its tremendous assets and technology, talents to enable sales team ; and sales team are encouraged to do more  "customer engagements",  for "TP",  and this is the time for IBM to team with our partners to realize  " make with China" and " made in China " leveraging IBM's know how and expertise. Welcome to watch this video in more details and share your thoughts.
+
+/cygdrive/d/HongKing/2. Self/MyGithub
+[TCP_ESTABLISHED] = "ESTAB",
+[TCP_SYN_SENT] = "SYN-SENT",
+[TCP_SYN_RECV] = "SYN-RECV",
+[TCP_FIN_WAIT1] = "FIN-WAIT-1",
+[TCP_FIN_WAIT2] = "FIN-WAIT-2",
+[TCP_TIME_WAIT] = "TIME-WAIT",
+[TCP_CLOSE] = "UNCONN",
+[TCP_CLOSE_WAIT] = "CLOSE-WAIT",
+[TCP_LAST_ACK] = "LAST-ACK",
+[TCP_LISTEN] =  "LISTEN",
+[TCP_CLOSING] = "CLOSING",
+
+
+PMC
+
+scp -r weihongj@rchgsa.ibm.com:/gsa/rchgsa/projects/e/emsol/osp/build/fix/430/current/F20151215-1817/fixpacks/
+ 
+
+
+The patch is a bit difficult to digest but improvements are visible
+after being applied
+
+Help customer to be a trusted service provider with IBM openstack
+
+
+
+NTP服务器   				-- 必须		high
+加固模板    				-- 必须   high
+Openstack管理节点   -- 必须   high
+KVM主机系统安全检查 -- 必须		high
+YUM源								-- 必须 	high
+
+监控先行 						-- 必须 	high
+
+
+网口配置
+-rw-r--r--. 1 root root  273 Dec  9 12:14 ifcfg-eno2
+-rw-r--r--. 1 root root  273 Dec  9 12:14 ifcfg-eno1
+-rw-r--r--. 1 root root  281 Dec  9 12:14 ifcfg-enp6s0f1
+-rw-r--r--. 1 root root  281 Dec  9 12:14 ifcfg-enp4s0f1
+-rw-r--r--. 1 root root   78 Dec 15 12:48 ifcfg-enp4s0f0
+-rw-r--r--. 1 root root   79 Dec 15 12:48 ifcfg-enp6s0f0
+
+slancer01/1qaz@WSX
+root/Slancer@1234
+
+
+sir，您要登录vcenter    
+ip地址：1.0.8.5    
+用户名：administrator@vsphere.local    
+密码：Slancer@8888
+
+
+1.0.11.50   yjp1ctlr01.yjp1.slancer.com   yjp1ctlr01
+1.0.11.51   yjp1ctlr02.yjp1.slancer.com   yjp1ctlr02
+1.0.11.52   yjp1dep.yjp1.slancer.com   yjp1dep
+1.0.11.53   yjp1net.yjp1.slancer.com   yjp1net
+1.0.11.55   yjp1dbmq01.yjp1.slancer.com   yjp1dbmq01
+1.0.11.56   yjp1dbmq02.yjp1.slancer.com   yjp1dbmq02
+ntp setting:
+=====================
+tinker panic 0
+statsdir /var/log/ntpstats/
+leapfile /etc/ntp.leapseconds
+driftfile /var/lib/ntp/ntp.drift
+
+statistics loopstats peerstats clockstats
+filegen loopstats file loopstats type day enable
+filegen peerstats file peerstats type day enable
+filegen clockstats file clockstats type day enable
+
+password  requisite pam_cracklib.so difok=3 minlen=8 ucredit=-1 lcredit=-1 dcredit=-1
+
+
+server 10.0.41.254 iburst
+restrict 10.0.41.254 nomodify notrap noquery
+
+restrict default kod notrap nomodify nopeer noquery
+restrict 127.0.0.1 nomodify
+restrict -6 default kod notrap nomodify nopeer noquery
+restrict -6 ::1 nomodify
+
+============================
+
+Failed to start Set time via NTP
+
+1. 允许root登录  因为安装的需要
+
+2. 临时禁用超时设置, unset TMOUT
+
+
+
+    "role[ibm-os-base]",
+    "role[ibm-os-database-client-node]",
+    "role[ibm-os-messaging-client-node]",
+    "role[ibm-os-cache-server-node]",
+    "recipe[ibm-openstack-common::controller-selinux]",
+    "recipe[ibm-openstack-simple-token]",
+    "role[os-identity]",
+    "role[os-image]",
+    "recipe[openstack-network::identity_registration]",
+    "recipe[ibm-openstack-network::balancer]",
+    "role[os-network-server]",
+    "role[os-compute-setup]",
+    "role[os-compute-conductor]",
+    "role[os-compute-scheduler]",
+    "role[os-compute-api-os-compute]",
+    "role[os-compute-api-metadata]",
+    "role[os-compute-cert]",
+    "role[os-compute-vncproxy]",
+    "role[os-block-storage]",
+    "recipe[ibm-openstack-common::cinderv1-endpoint-register]",
+    "role[os-orchestration]",
+    "role[os-telemetry-agent-central]",
+    "role[os-telemetry-api]",
+    "role[os-telemetry-collector]",
+    "role[os-telemetry-agent-notification]",
+    "role[os-telemetry-alarm-evaluator]",
+    "role[os-telemetry-alarm-notifier]",
+    "role[ibm-os-client-node]",
+    "role[ibm-os-dashboard-node]",
+    "recipe[ibm-sce::config-sce-policy]",
+    "recipe[ibm-sce::add-sceagent-user]",
+    "recipe[ibm-sce::add-ssp-endpoint]",
+    "recipe[ibm-sce::config-horizon-setting]"
+
+
+
+=================
+    "role[ibm-os-base]",
+    "role[ibm-os-database-client-node]",
+    "role[ibm-os-messaging-client-node]",
+    "role[ibm-os-cache-server-node]",
+    "recipe[ibm-openstack-common::controller-selinux]",
+    "recipe[ibm-openstack-simple-token]",
+    "role[os-identity]",
+    "role[os-image]",
+    "recipe[openstack-network::identity_registration]",
+    "role[os-network-openvswitch]",
+    "role[os-network-dhcp-agent]",
+    "recipe[ibm-openstack-network::iproute-upgrade]",
+    "recipe[ibm-openstack-network::ip-movement]",
+    "recipe[ibm-openstack-network::setup-l3-agent]",
+    "recipe[openstack-network::vpn_agent]",
+    "recipe[ibm-openstack-network::balancer]",
+    "role[os-network-metadata-agent]",
+    "role[os-network-server]",
+    "role[os-compute-setup]",
+    "role[os-compute-conductor]",
+    "role[os-compute-scheduler]",
+    "role[os-compute-api-os-compute]",
+    "role[os-compute-api-metadata]",
+    "role[os-compute-cert]",
+    "role[os-compute-vncproxy]",
+    "role[os-block-storage]",
+    "recipe[ibm-openstack-common::cinderv1-endpoint-register]",
+    "role[os-orchestration]",
+    "role[os-telemetry-agent-central]",
+    "role[os-telemetry-api]",
+    "role[os-telemetry-collector]",
+    "role[os-telemetry-agent-notification]",
+    "role[os-telemetry-alarm-evaluator]",
+    "role[os-telemetry-alarm-notifier]",
+    "role[ibm-os-client-node]",
+    "role[ibm-os-dashboard-node]",
+    "recipe[ibm-sce::config-sce-policy]",
+    "recipe[ibm-sce::add-sceagent-user]",
+    "recipe[ibm-sce::add-ssp-endpoint]",
+    "recipe[ibm-sce::config-horizon-setting]"
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '*682E5F3375208163BFD2FA1FD3AA0DC6102928F1' WITH GRANT OPTION;
+grant all on *.* TO 'root'@'%' IDENTIFIED BY PASSWORD '*682E5F3375208163BFD2FA1FD3AA0DC6102928F1';
+
+mount from util-linux 2.23.2 (libmount 2.23.0: selinux, debug, assert)
+
+
+计算节点挂载nfs
+yum install -y nfs-utils.x86_64
+systemctl enable rpcbind
+systemctl start rpcbind
+
+mkdir -p /var/lib/images
+mount -t nfs -o vers=3 1.0.14.2:/vol/drillnfs /var/lib/images/
+df -h
+
+
+yum install -y net-tools
+
+
+    "openstack": {
+      "endpoints": {
+        "network-openvswitch": {
+          "bind_interface": "eno16777728"
+        },
+        "compute-vnc-bind": {
+          "bind_interface": "eno16777728"
+        },
+        "compute-vnc-proxy-bind": {
+          "bind_interface": "eno16777728"
+        },
+        "compute-serial-console-bind": {
+          "bind_interface": "eno16777728"
+        }
+      },
+      
+      
+
+%%%
+%% Generated by Chef
+%%%
+
+[
+  {kernel, [
+
+  ]},
+  {ssl, [{versions, ['tlsv1.2']}]},
+  {rabbit, [
+    {ssl_listeners, [5671]},
+    {ssl_options, [{cacertfile,"/etc/rabbitmq/ssl/cacert.pem"},
+                    {certfile,"/etc/rabbitmq/ssl/cert.pem"},
+                    {keyfile,"/etc/rabbitmq/ssl/key.pem"},
+                    {verify,verify_none},
+                    {fail_if_no_peer_cert,false}
+                    ,{versions,['tlsv1.2']}
+                    ,{ciphers,["ECDHE-ECDSA-AES256-SHA384","ECDH-ECDSA-AES256-SHA384","ECDHE-RSA-AES128-SHA256","ECDH-RSA-AES128-SHA256"]}
+                    ]},
+    {tcp_listen_options, [binary, {packet,raw},
+                                  {reuseaddr,true},
+                                  {backlog,128},
+                                  {nodelay,true},
+                                  {exit_on_close,false},
+                                  {keepalive,false}]},
+
+    {default_user, <<"guest">>},
+    {default_pass, <<"guest">>},
+    {heartbeat, 580}
+
+  ]}
+].
+
+openssl s_server -accept 8443 -cert /etc/rabbitmq/ssl/cert.pem -key /etc/rabbitmq/ssl/key.pem \
+  -CAfile /etc/rabbitmq/ssl/cacert.pem
+
+openssl s_client -connect yjp1dbmq02.yjp1.slancer.com:8443 -cert /home/slancer01/ssl/cert.pem -key /home/slancer01/ssl/key.pem \
+  -CAfile /home/slancer01/ssl/cacert.pem  
+
+Connection attempt from disallowed node
+
+rabbitmqctl eval '{ok, Data} = file:read_file("/etc/rabbitmq/ssl/cacert.pem"), base64:encode_to_string(erlang:md5(Data)).' 
+
+Recipe: ibm-openstack-common::rabbitmq-client
+  * directory[/etc/pki/tls/icm/rabbitmq] action create (up to date)
+  * cookbook_file[/etc/pki/tls/icm/rabbitmq/cacerts.pem] action create (up to date)
+  
+
+[root@yjp1dep cookbooks]# knife role list | grep ibm | grep single
+ibm-os-single-controller-distributed-database-node
+    "role[ibm-os-base]",
+    "role[ibm-os-database-client-node]",
+    "role[ibm-os-messaging-server-node]",
+    "role[ibm-os-messaging-client-node]",
+    "role[ibm-os-cache-server-node]",
+    "recipe[ibm-openstack-common::controller-selinux]",
+    "recipe[ibm-openstack-simple-token]",
+    "role[os-identity]",
+    "role[os-image]",
+    "recipe[openstack-network::identity_registration]",
+    "role[os-network-openvswitch]",
+    "role[os-network-dhcp-agent]",
+    "recipe[ibm-openstack-network::iproute-upgrade]",
+    "recipe[ibm-openstack-network::ip-movement]",
+    "recipe[ibm-openstack-network::setup-l3-agent]",
+    "recipe[openstack-network::vpn_agent]",
+    "recipe[ibm-openstack-network::balancer]",
+    "role[os-network-metadata-agent]",
+    "role[os-network-server]",
+    "role[os-compute-setup]",
+    "role[os-compute-conductor]",
+    "role[os-compute-scheduler]",
+    "role[os-compute-api-os-compute]",
+    "role[os-compute-api-metadata]",
+    "role[os-compute-cert]",
+    "role[os-compute-vncproxy]",
+    "role[os-block-storage]",
+    "recipe[ibm-openstack-common::cinderv1-endpoint-register]",
+    "role[os-orchestration]",
+    "role[os-telemetry-agent-central]",
+    "role[os-telemetry-api]",
+    "role[os-telemetry-collector]",
+    "role[os-telemetry-agent-notification]",
+    "role[os-telemetry-alarm-evaluator]",
+    "role[os-telemetry-alarm-notifier]",
+    "role[ibm-os-client-node]",
+    "role[ibm-os-dashboard-node]",
+    "recipe[ibm-sce::config-sce-policy]",
+    "recipe[ibm-sce::add-sceagent-user]",
+    "recipe[ibm-sce::add-ssp-endpoint]",
+    "recipe[ibm-sce::config-horizon-setting]"
+    
+    
+
+
+ibm-os-single-controller-node
+
+  "run_list": [
+    "role[ibm-os-base]",
+    "role[ibm-os-database-server-node]",
+    "role[ibm-os-messaging-server-node]",
+    "role[ibm-os-messaging-client-node]",
+    "role[ibm-os-cache-server-node]",
+    "recipe[ibm-openstack-common::controller-selinux]",
+    "recipe[ibm-openstack-simple-token]",
+    "role[os-identity]",
+    "recipe[ibm-openstack-common::configure-ldap]",
+    "role[os-image]",
+    "recipe[openstack-network::identity_registration]",
+    "role[os-network-openvswitch]",
+    "role[os-network-dhcp-agent]",
+    "recipe[ibm-openstack-network::iproute-upgrade]",
+    "recipe[ibm-openstack-network::ip-movement]",
+    "recipe[ibm-openstack-network::setup-l3-agent]",
+    "recipe[openstack-network::vpn_agent]",
+    "recipe[ibm-openstack-network::balancer]",
+    "recipe[ibm-openstack-network::hyperv]",
+    "role[os-network-metadata-agent]",
+    "role[os-network-server]",
+    "role[os-compute-setup]",
+    "role[os-compute-conductor]",
+    "role[os-compute-scheduler]",
+    "role[os-compute-api-os-compute]",
+    "role[os-compute-api-metadata]",
+    "role[os-compute-cert]",
+    "role[os-compute-vncproxy]",
+    "recipe[openstack-compute::serialproxy]",
+    "role[os-block-storage]",
+    "recipe[ibm-openstack-common::cinderv1-endpoint-register]",
+    "role[os-orchestration]",
+    "role[os-telemetry-agent-central]",
+    "role[os-telemetry-api]",
+    "role[os-telemetry-collector]",
+    "role[os-telemetry-agent-notification]",
+    "role[os-telemetry-alarm-evaluator]",
+    "role[os-telemetry-alarm-notifier]",
+    "role[os-bare-metal-api]",
+    "role[ibm-os-client-node]",
+    "role[ibm-os-dashboard-node]",
+    "recipe[ibm-sce::config-sce-policy]",
+    "recipe[ibm-sce::add-sceagent-user]",
+    "recipe[ibm-sce::add-ssp-endpoint]",
+    "recipe[ibm-sce::config-horizon-setting]"
+    
+    
+    
+ibm-os-single-controller-powervc-driver
+ibm-os-single-controller-vmware-driver
+
+
+ibm-os-compute-node-kvm
+
+    "role[ibm-os-base]",
+    "role[ibm-os-messaging-client-node]",
+    "recipe[ibm-openstack-network::ip-movement]",
+    "recipe[openstack-compute::compute]",
+    "role[os-telemetry-agent-compute]"
+

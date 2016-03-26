@@ -1,0 +1,38 @@
+{
+  "LB": {
+    "name": "lbname",
+    "net": "subnet-id",
+    "sg": "sg",
+    "description": "null",
+    "serverpool": {
+      "server1": {
+        "name": "server1name",
+        "id": "xxxxxxxxx",
+        "ip": "x.x.x.x",
+        "weight": "10",
+        "port": 8080
+      },
+      "server2": {
+        "name": "server2name",
+        "id": "xxxxxxxxx",
+        "ip": "x.x.x.x",
+        "weight": "10",
+        "port": 8080
+      },
+      "server3": {
+        "name": "server3name",
+        "id": "xxxxxxxxx",
+        "ip": "x.x.x.x",
+        "weight": "10",
+        "port": 8080
+      }
+    },
+    "listener": {
+      "name": "disabled",
+      "protocol": "disabled",
+      "port": "disabled",
+      "maxconnection": "disabled"
+    },
+    "public-ip": "x.x.x.x"
+  }
+}

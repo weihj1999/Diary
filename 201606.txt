@@ -1,0 +1,200 @@
+LaNcEr0429*!
+LaNcEr0429
+
+
+hw_cpu_threads
+hw:cpu_threads
+
+主要是黄色部分,是否是期望值
+1. 开发人员拨入后,是否允许访问ftp所在服务区的ftp? 标注fail是否应为期望值
+2. 开发人员拨入后,是否允许访问访问svn所在服务区远程桌面? 标注fail是否仍为期望值
+
+
+
+03:40:18.181699 00:00:5e:00:03:64 > Broadcast, ethertype ARP (0x0806), length 60: Request who-has 10.128.165.254 tell 10.128.165.254, length 46
+03:40:18.181720 00:e0:4c:17:fa:ce > Broadcast, ethertype ARP (0x0806), length 60: Request who-has 10.128.165.254 tell 10.128.165.254, length 46
+
+
+[root@controler-node network-scripts]# service httpd restart
+Stopping httpd:                                            [FAILED]
+Starting httpd: httpd: Syntax error on line 223 of /etc/httpd/conf/httpd.conf: Syntax error on line 2 of /etc/httpd/conf.d/subversion.conf: Cannot load /etc/httpd/modules/mod_dav_svn.so into server: /etc/httpd/modules/mod_dav_svn.so: undefined symbol: dav_register_provider
+                                                           [FAILED]
+
+
+====================================
+
+[root@controler-node ~]# glance help image-create
+usage: glance image-create [--id <IMAGE_ID>] [--name <NAME>] [--store <STORE>]
+                           [--disk-format <DISK_FORMAT>]
+                           [--container-format <CONTAINER_FORMAT>]
+                           [--owner <TENANT_ID>] [--size <SIZE>]
+                           [--min-disk <DISK_GB>] [--min-ram <DISK_RAM>]
+                           [--location <IMAGE_URL>] [--file <FILE>]
+                           [--checksum <CHECKSUM>] [--copy-from <IMAGE_URL>]
+                           [--is-public {True,False}]
+                           [--is-protected {True,False}]
+                           [--property <key=value>] [--human-readable]
+                           [--progress]
+
+Create a new image.
+
+Optional arguments:
+  --id <IMAGE_ID>       ID of image to reserve.
+  --name <NAME>         Name of image.
+  --store <STORE>       Store to upload image to.
+  --disk-format <DISK_FORMAT>
+                        Disk format of image. Acceptable formats: ami, ari,
+                        aki, vhd, vmdk, raw, qcow2, vdi, and iso.
+  --container-format <CONTAINER_FORMAT>
+                        Container format of image. Acceptable formats: ami,
+                        ari, aki, bare, and ovf.
+  --owner <TENANT_ID>   Tenant who should own image.
+  --size <SIZE>         Size of image data (in bytes). Only used with '--
+                        location' and '--copy_from'.
+  --min-disk <DISK_GB>  Minimum size of disk needed to boot image (in
+                        gigabytes).
+  --min-ram <DISK_RAM>  Minimum amount of ram needed to boot image (in
+                        megabytes).
+  --location <IMAGE_URL>
+                        URL where the data for this image already resides. For
+                        example, if the image data is stored in swift, you
+                        could specify 'swift+http://tenant%3Aaccount:key@auth_
+                        url/v2.0/container/obj'. (Note: '%3A' is ':' URL
+                        encoded.)
+  --file <FILE>         Local file that contains disk image to be uploaded
+                        during creation. Alternatively, images can be passed
+                        to the client via stdin.
+  --checksum <CHECKSUM>
+                        Hash of image data used Glance can use for
+                        verification. Provide a md5 checksum here.
+  --copy-from <IMAGE_URL>
+                        Similar to '--location' in usage, but this indicates
+                        that the Glance server should immediately copy the
+                        data and store it in its configured image store.
+  --is-public {True,False}
+                        Make image accessible to the public.
+  --is-protected {True,False}
+                        Prevent image from being deleted.
+  --property <key=value>
+                        Arbitrary property to associate with image. May be
+                        used multiple times.
+  --human-readable      Print image size in a human-friendly format.
+  --progress            Show upload progress bar.
+
+
+
+
+172,24.0.14
+gqy  123456-a
+
+
+System z and Power ASEAN events
+
+<img alt="" src="/wikis/form/api/wiki/d1d037f6-d8e3-4e91-948c-ee3704072190/page/084e91ac-d31e-4187-a1d0-8e0f70480dac/attachment/63913b1a-7cd9-4c81-a6ee-7299ee3176ba/media/Day1AM.JPG" style="float: left;" height="345" width="460">
+
+BJOSDEP01
+
+86f3eacf72995c82503096174451a2dc  cmwo430_xlinux_install.bin
+
+YB-CH242-02  Jun? 9 20:17:51 YB-CH242-02 ovs-vswitchd: ovs|15643|odp_util(revalidator_1168)|ERR|Dropped 17 log messages in last 60 seconds (most recently, 10 secone
+Jun? 9 20:17:51 YB-CH242-02 ovs-vswitchd: ovs|15644|odp_util(revalidator_1168)|ERR|mask expected for non-Ethernet II 
+
+hitkeky@gmail.com
+
+ftp://xyding%40cn.ibm.com:passw0rd@ftp3.linux.ibm.com/redhat/yum/6/server/optional/x86_64
+
+
+
+1：测试owner生成测试方案
+a：包含：测试项目，测试执行方法，测试通过标准（功能标准与性能标准），测试时间安排，测试优先级
+b：对需要调整测试环境来完成不同的测试功能的情况，提出测试环境调整的要求
+
+2：测试员根据测试方案完成测试，并生成测试报告
+包含：测试执行过程记录（命令与截屏），测试结论
+
+3: 测试用例设计
+a 主要openstack功能测试点
+b 测试框架
+c 形成测试模板
+
+4：测试owner最终需要生成测试结论分析，对已测试功能的适用性生成最终分析材料
+
+
+10.200.0.1-10.200.0.252/0-65535
+10.201.0.1-10.201.0.252/0-65535
+10.210.0.1-10.210.0.252/0-65535
+10.211.0.1-10.211.0.252/0-65535
+10.220.0.1-10.220.0.252/0-65535
+10.221.0.1-10.221.0.252/0-65535
+usage: glance image-create [--id <IMAGE_ID>] [--name <NAME>] [--store <STORE>]
+                           [--disk-format <DISK_FORMAT>]
+                           [--container-format <CONTAINER_FORMAT>]
+                           [--owner <TENANT_ID>] [--size <SIZE>]
+                           [--min-disk <DISK_GB>] [--min-ram <DISK_RAM>]
+                           [--location <IMAGE_URL>] [--file <FILE>]
+                           [--checksum <CHECKSUM>] [--copy-from <IMAGE_URL>]
+                           [--is-public {True,False}]
+                           [--is-protected {True,False}]
+                           [--property <key=value>] [--human-readable]
+                           [--progress]
+
+glance image-create --name rhel6u5 --disk-format qcow2 --container-format bare --is-public true --progress --file rhel6u5.qcow2
+
+
+qemu-img info rhel6u5.qcow2 --disk-format qcow2 --container-format bare --is-public true --progress --file rhel6u5.qcow2
+openstack1
+
+分析问题
+
+brainstorming
+
+pain point
+
+
+heat的项目:  xiaojing  xiaojun
+
+
+
+
+ovs + dpdk
+
+
+
+1. 假设chef server上已经有一个文件 heat.yaml, *.json
+2. source /root/openrc
+3. heat stack-create <name> -f heat.yaml
+4. nova list
+5. return #4 result back to chef server 
+
+
+knife bootstrap 10.240.0.132 -x root -P Passw0rd --run-list 'recipe[createstack::heat-config]'
+
+ovs + kvm
+http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=INSTALL.KVM;hb=HEAD
+
+http://zcentric.com/2014/07/07/openvswitch-kvm-libvirt-ubuntu-vlans-the-right-way/
+
+http://kashyapc.com/2013/07/13/configuring-libvirt-guests-with-an-open-vswitch-bridge/
+
+http://www.opencloudblog.com/?p=177
+http://networkstatic.net/installing-open-vswitch-with-kvm/
+http://xmodulo.com/install-configure-kvm-open-vswitch-ubuntu-debian.html
+http://git.openvswitch.org/cgi-bin/gitweb.cgi?p=openvswitch;a=blob_plain;f=FAQ;hb=HEAD
+
+
+陈斌斌
+
+
+wusj3037
+
+
+胡也凡
+
+
+
+
+
+p7:  asm: 169.254.2.107
+
+169.252.2.147
+56882882

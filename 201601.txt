@@ -1,0 +1,242 @@
+18600575711
+
+13810626892
+
+18500140234
+
+18888850958
+
+18610762046
+
+2016年1月2号
+
+1. Floating IP配置  (xingjun通知 , 今天完成)
+
+2. 应用的自动升级的问题?
+
+3. Pod Delivery下周结束
+
+4. mpls的完善和优化的计划明后天ff提出后讨论
+
+
+Basic OP
+400电话上线后运维即刻开始, 需要相应的招L1, 
+xiaoqing的运维流程以及运维角色6-8号之间确定最后沟通, 6号出第一版
+
+
+用户手册, 文档, 各自写,运单后两周汇总
+
+
+开发过来的问题
+1. 公网IP的绑定有问题?
+2. 资源验证的再检查?
+3. junjie的生病, 这块需要继续找人接 
+4. 三天一个场景的进度
+
+Openstack开发的问题?
+
+
+系统开发, 应用开发的方法区别?
+
+商务计划6号完成
+光环的sale的director的助理 李惠,光环能接受的培训时间是一月中旬
+起名的全员参与
+
+一月下旬的年会建议的准备工作已经开始, 
+封闭式会议:  
+1. 前面8,9个月工作的经验总结
+2. 关于产品计划
+3. 管理制度的完善, 技术管理, 人事管理
+4. 
+
+需要关注的几个问题
+1. iscsi的工作原理? 什么是initiator, 什么是connection? iqn号的用途等需要彻底搞清楚
+2. openstack外网工作原理彻底调研, 多个外网设备的设置问题 ?
+
+
+=======================================
+iSCSI Introduction
+
+iSCSI is one of the hottest topics in Storage because it allows you to create centralized SANs using TCP networks rather than Fibre Channel (FC) networks. Get a handle on the main iSCSI concepts and terminology
+
+SANs (Storage Area Networks) are popular as a storage system for many reasons. Most commonly they are popular because the storage is centralized allowing easier management, easier maintenance, very good performance, and it has a good price/performance ratio. Typical SANs are constructed using Fibre Channel (FC) networks and FC hard drives, although SATA, SAS, and SSD drives are used in SANs today.
+
+FC storage has very good performance from the storage hardware to the client using FC networks networks at 2Gb/s, 4Gb/s, and now 8 Gb/s speeds. But FC based SANs require an FC card in each client as well as an FC network (switches) in addition to the normal TCP networks that clients have, adding cost and complexity to servers.
+
+FC based SANs are popular because of very good performance and all of the benefits of centralized storage. But at the same time, they can be rather expensive and complex. But, there is the option of using iSCSI for SANs keeping the benefits of SANs and reducing the complexity because only a TCP network is needed.
+
+
+建设云管理服务平台：以开源产品实施云管理平台建设，实现对X86、Power、存储虚拟化的统一管理，实现虚拟资源池的容量监控、资源使用计量，实现资源分配流程的统一门户管理,提供行业云使用者自服务功能.
+
+We also work with social tools for customer engagement, such as wiki, forum and community, webchat and etc.
+
+
+And we also use  Software RFE Community to collect user requirement.
+
+深蓝云海灾备管理系统            
+深蓝云海灾备应急指挥系统
+深蓝云海数据同步管家
+深蓝云海数据备份管家
+深蓝云海私有云管理系统
+深蓝云海自动化部署系统
+
+结合我们公司的名字北京蓝沧科技有限公司, 以及我们使用logo, 深蓝云海, 模仿其他公司的一些做法, 不妨做一个
+缩写,比如说深云科技 (深蓝已经被 IBM用了), 那我们的产品系列可以考虑借用, 比如说叫做深云系列X号,具体
+深云系列1号是 灾备管理系统
+深云系列2号是 灾备应急指挥系统
+深云系列3号是 数据同步管家
+深云系列4号是 数据备份管家
+深云系列5号是 私有云管理系统
+深云系列6号是 自动化部署系统
+
+或者序号去掉
+深云系列产品之 灾备管理系统
+深云系列产品之 灾备应急指挥系统
+深云系列产品之 数据同步管家
+深云系列产品之 数据备份管家
+深云系列产品之 私有云管理系统
+深云系列产品之 自动化部署系统
+
+江西农信:
+Wuliang:
+PMC的研发:
+Bluebox的landing
+Networking: 
+
+TP/BP:　
+
+Bluemix: 
+
+
+Customer enagagement goal
+
+
+
+
+Case Study:
+
+Title: A data protection solution based on Openstack Cinder.
+
+Abstract:
+How to prectect data inside a VM which for system partition and extended partition? This is the biggest concern
+which boosted from our customer. The customer used openstack to build their provate cloud. And there are more than
+ 100 applications running on the cloud. And plenty of data are generated daily. Customer need a unified solution
+from openstack to help them to back up the VM and the data. Openstack will do this in glance which is limited by 
+the data transaction speed in the SAN. We introduced a solution based on Cinder which help
+openstack to backup VM's snapshot and volume's snapshot in cinder. Once disaster hapened, A new VM with the latest 
+data will be booted. Meanwhile, the extended partition also can be attach from cinder volue. In This way, we imporve
+the performance with double times than the tradtional.
+
+Title: 
+Solution to claim/release compute resoure from Openstack cloud for disaster recovery.
+
+Abastract:
+
+In 2015, we have an important client in China. They are building a private cloud together with their disaster recovery
+data center. This is difference from the DRaaS. They want the cloud to manage all the physical compute resource, include
+the reserved resource for their disaster recovery. However, they hope once the disaster occured. All the resoure which 
+planned for DR will be reclaimed from the cloud resource. We provide the solution to  meet customer's requirement. And 
+help them to design a new architecture and new extended application to help openstack manage the DR resource and release
+them as required.
+
+
+Title: Cinder Multi-backend introduction and advance tips
+
+Abstract: 
+
+In customer real environment, openstack may manage different storage device as block device backend. This topic will help
+customer to manage them in cinder with multi-backend configed. And even with same storage device, we can also group them 
+and use them in openstack cinder. With the help of different volume-type definced, openstack will help end user manage their
+storage easily. Furthermore, there are severial tips will also be introduced in this topic. For example, we can define different
+volume type to define different storage vary from different vendor, and different volume type to define different quality storage,
+such as high performance stroage will be used from high quality required application, and low performance storage will be used for
+others. There will be a detail introdction for more tips in final ppt.
+
+
+
+
+BIO:
+Hong Jin Wei has been working on enterprise solution, implementation, development and research 
+on enterprise cloud services. He and his team have provided cloud services to a number of 
+enterprise clients in China, and the services vary from solution design, system operation and 
+maintenance, to continue delivery in post-sales support. He has special interest in open cloud 
+platforms such as OpenStack and has been devoted to introducing OpenStack technology in enterprise
+cloud services.
+
+
+git@github.com:weihj1999/Python.git
+
+
+Introduction to iSCSI
+
+iSCSI is one of the hottest topics in Storage because it allows you to create centralized SANs
+using TCP networks rather than Fibre Channel (FC) networks. Get a handle on the main iSCSI 
+concepts and terminology.
+
+SANs (Storage Area Networks) are popular as a storage system for many reasons. Most commonly 
+they are popular because the storage is centralized allowing easier management, easier 
+maintenance, very good performance, and it has a good price/performance ratio. Typical SANs are constructed using Fibre Channel (FC) networks and FC hard drives, although SATA, SAS, and SSD drives are used in SANs today.
+
+FC storage has very good performance from the storage hardware to the client using FC networks networks at 2Gb/s, 4Gb/s, and now 8 Gb/s speeds. But FC based SANs require an FC card in each client as well as an FC network (switches) in addition to the normal TCP networks that clients have, adding cost and complexity to servers.
+
+FC based SANs are popular because of very good performance and all of the benefits of centralized storage. But at the same time, they can be rather expensive and complex. But, there is the option of using iSCSI for SANs keeping the benefits of SANs and reducing the complexity because only a TCP network is needed.
+
+SAN Introduction
+
+Virtually every server needs some sort of storage and the associated backup devices and management software. Originally this meant that every server had its own storage, its own backup device, its own management tools, its own security, etc. as show below in Figure 1. This configuration is commonly called Direct Attached Storage (DAS).
+
+
+1. 第一单, 系统上线对客户的意义
+2. ICM, Heat支持(ICO), 异构系统,Openstack, 
+3. 网络架构重新设计(前后因果), 技术难点攻关? 
+4. 
+=================
+
+FJ
+1. Docker,  //Container-aaS, 集成, Wencheng, 
+2. GRE/vXlan //HongHui, 
+3. cinder, 
+
+deliver到sale那边
+
+GTS
+
+ICO vs Openstack
+ICM vs Openstack
+
+华胜天成
+
+Docker
+
+===================
+Docker：
+技术细节梳理 
+应用场景梳理
+架构相关？
+
+Docker资料
+
+app-get / install
+测试环境？
+
+redhat
+
+基础模板docker file:　exmaple或者自己写，　或者官方ｂｕｉｌｄ号的模板，　mysql
+
+
+
+   
+
+
+
+022
+Yufeng:
+
+Tianhao:
+
+Tech support center:
+
+Xiaoqing:
+
+hangjian:
+

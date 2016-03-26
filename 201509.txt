@@ -1,0 +1,504 @@
+2015/09
+
+组装机的快速测试申请
+
+钢铁侠:  Iron Man 
+		  :	C
+魔型女,神奇先生: Magic
+
+
+{
+  "openstack": {
+    "endpoints": {
+      "network-openvswitch": {
+        "bind_interface": "CHANGEME"  (Run the ifconfig command to identify the name of the interface, for example, enP3p9s0f0.)
+      },
+      "compute-vnc-bind": {
+        "bind_interface": "CHANGEME"  (Run the ifconfig command to identify the name of the interface, for example, enP3p9s0f0.)
+      }
+    }
+}
+{
+    "openstack": {
+      "endpoints": {
+        "network-openvswitch": {
+          "bind_interface": "em3"
+        },
+        "compute-vnc-bind": {
+          "bind_interface": "em3"
+        },
+        "compute-vnc-proxy-bind": {
+          "bind_interface": "em3"
+        }
+      },
+      "network": {
+        "verbose": "False",
+        "debug": "False",
+        "openvswitch": {
+          "bridge_mappings": "default:br-data",
+          "bridge_mapping_interface": "br-data:em4"
+        }
+      }      
+}
+
+Recipe: openstack-identity::registration
+  * openstack-identity_register[Register 'admin' Tenant] action create_tenant
+ 
+  * openstack-identity_register[Register 'admin' Role] action create_role
+ 
+  * openstack-identity_register[Register 'service' Role] action create_role
+
+  * openstack-identity_register[Register 'admin' User] action create_user
+
+  * openstack-identity_register[Grant 'admin' Role to 'admin' User in 'admin' Tenant] action grant_role
+
+  * openstack-identity_register[Grant 'service' Role to 'admin' User in 'admin' Tenant] action grant_role
+
+  * openstack-identity_register[Register Identity Service] action create_service
+
+  * openstack-identity_register[Register Identity Endpoint] action create_endpoint
+
+  * openstack-identity_register[Create EC2 credentials for 'admin' user] action create_ec2_credentials
+
+
+
+
+
+现有的dell NX3230  ==> 需要购买系统升级 (升级到哪个版本 Equallogic? Support List中可以查询)==> 之后使用openstack社区的驱动
+
+ovs-vsctl add-port br-ens34 test911
+ovs-vsctl show | more
+ovs-vsctl set interface test911 type=internal
+ip a
+ip addr add 10.0.11.17/24 brd 10.0.11.255 dev test911
+ip -d link show test911
+
+
+Openstack测试项
+
+1. vxlan
+上限值
+
+floating IP:  
+DRaaS自动分配公网IP  (与DRaaS应用有关, 也就是公网IP的管理) ＩＰ地址复用
+
+
+客户FO/Drill的时候需要通告蓝沧
+
+FO/DRILL ｎｅｕｔｒｏｎ　Ｓｅｒｖｅｒ　是否可以通过单独使用独立网卡的方式实现？
+
+
+net.ipv4.conf.all.rp_filter = 0
+net.ipv4.conf.default.rp_filter = 0
+~
+
+07:45:59.129531 fa:16:3e:2f:0c:47 > Broadcast, ethertype ARP (0x0806), length 56: Request who-has 10.0.11.2 tell 10.0.11.3, length 42
+07:45:59.129589 fa:16:3e:f0:60:32 > fa:16:3e:2f:0c:47, ethertype ARP (0x0806), length 42: Reply 10.0.11.2 is-at fa:16:3e:f0:60:32, length 28
+^C
+
+ctlr2.tstpod.slancer.com Running Recipe ibm-openstack-iptables::default
+ctlr2.tstpod.slancer.com Running Recipe iptables::default
+
+route add -net 192.56.76.0 netmask 255.255.255.0 dev eth0
+
+
+2015/09/07
+
+1. redmine  done
+2. Heat monitor  ongoing
+
+3. xiaojing 云卯培训 - ongoing
+4. Openstack安装详细手册完成  - ongoing
+5. cinder测试吗? netapp设备最迟这周送到.  Dell升级的事情。 
+
+2015/09/08
+
+烟台高速交警
+
+1-1/2+1/3-1/4 + 1/5 -1/6 + ... + 1/19 -1/20
+-------------------------------------------
+1/22-1/23+1/24-1/25+ ... + 1/39-1/40
+
+
+1-1/2+1/3-1/4 + 1/5 -1/6 + ... + 1/19 -1/20
+P20 - P20/2 +
+---------------------
+P20
+
+[root@ctl icm-selinux]# semodule -i /var/chef/cache/icm-selinux/icm-colord.pp
+
+libsemanage.semanage_get_lock: Could not get direct transaction lock at /etc/selinux/targeted/modules/semanage.trans.LOCK. (Resource temporarily unavailable).
+semodule:  Failed on /var/chef/cache/icm-selinux/icm-colord.pp!
+
+1. 军晓测试任务安排  - 遗留任务 网络性能测试
+2. pod实施方案详细设计
+3. HEAT应用场景组合设计
+4. 
+iptables -I INPUT -p tcp  --dport 8080 -j ACCEPT
+iptables -I INPUT -p tcp  --dport 10050 -j ACCEPT
+iptables -I OUTPUT -p tcp  --sport 10050 -j ACCEPT
+iptables -I OUTPUT -p tcp  --sport 10050 -j ACCEPT
+
+iptables -I OUTPUT -p tcp  --dport 10051 -j ACCEPT
+iptables -I OUTPUT -p udp  --dport 10051 -j ACCEPT
+iptables -I INPUT -p tcp  --dport 10051 -j ACCEPT
+iptables -I INPUT -p udp  --dport 10051 -j ACCEPT
+
+iptables -I INPUT -p udp  --dport 123 -j ACCEPT
+iptables -I OUTPUT -p udp  --sport 123 -j ACCEPT
+
+
+redmine尚未跟踪, 补充中
+
+
+
+
+
+
+Sep 11 01:18:57 ctlr2 zabbix_agentd: zabbix_agentd [13236]: cannot run as root!
+Sep 11 01:18:57 ctlr2 zabbix_agentd: [FAILED]
+
+
+2.1 部署模板的创建与导入
+2.2 网络功能/性能测试
+2.3 部署测试
+2.4 存储功能/性能测试
+
+当前主要任务:
+自动化设计
+redmine任务创建
+
+
+   Error downloading packages:
+      python-kmod-0.9-4.el7.ppc64: [Errno 256] No more mirrors to try.
+      python-rtslib-2.1.fb50-1.el7.noarch: [Errno 256] No more mirrors to try.
+      pywbem-0.7.0-25.20130827svn625.el7.noarch: [Errno 256] No more mirrors to try.
+
+----------------------------------------
+查找 'travel' 在 'D:\HongKing\4. Others\SametimeTranscripts\gekun@cn.ibm.com\20151113\gekunlog.html':
+D:\HongKing\4. Others\SametimeTranscripts\gekun@cn.ibm.com\20151113\gekunlog.html(78): <div class="expansion"></div><div class="line"></div><div class="expansion grayBackground"></div><div class="messageBlock grayBackground" username="gekun@cn.ibm.com" timestamp="1447405179869"><div  class="grayBackground" style="height:0"><br/></div><div class="other" title="gekun@cn.ibm.com - Kun Ge/China/IBM [涓嬪崍04:59:39]"  dir="ltr"  ><nobr>gekun@cn.i...</nobr></div><br /><div style="clear:both;"></div></div><div  class="messageBlock grayBackground" timestamp="1447405179869"><div class="showTimestamp tsDisplay"><nobr>涓嬪崍04:59:39</nobr></div><div class="message left" title="gekun@cn.ibm.com - Kun Ge/China/IBM [涓嬪崍04:59:39]"  dir="ltr" ><span style="font-size:10pt;font-family:Arial;color:#000000;" class="left">for travel...</span> <span class="system">&#160;<br/></span></div></div>
+找到 'travel' 1 次。
+----------------------------------------
+查找 'travel' 在 'D:\HongKing\4. Others\SametimeTranscripts\jiangjz@cn.ibm.com\20151104\jiangjzlog.html':
+D:\HongKing\4. Others\SametimeTranscripts\jiangjz@cn.ibm.com\20151104\jiangjzlog.html(71): <div class="expansion"></div><div class="line"></div><div class="expansion grayBackground"></div><div class="messageBlock grayBackground" username="jiangjz@cn.ibm.com" timestamp="1446606478722"><div  class="grayBackground" style="height:0"><br/></div><div class="other" title="jiangjz@cn.ibm.com - Zhe NU Jiang/China/IBM [涓婂崍11:07:58]"  dir="ltr"  ><nobr>jiangjz@cn.i...</nobr></div><br /><div style="clear:both;"></div></div><div  class="messageBlock grayBackground" timestamp="1446606478722"><div class="showTimestamp tsDisplay"><nobr>涓婂崍11:07:58</nobr></div><div class="message left" title="jiangjz@cn.ibm.com - Zhe NU Jiang/China/IBM [涓婂崍11:07:58]"  dir="ltr" ><span style="font-size:10pt;font-family:Arial;color:#000000;" class="left">璇锋暀涓嬮偅涓猼ravel鎶ラ攢</span> <span class="system">&#160;<br/></span></div></div>
+找到 'travel' 1 次。
+----------------------------------------
+查找 'travel' 在 'D:\HongKing\4. Others\SametimeTranscripts\versebot@au1.ibm.com\20151103\versebotlog.html':
+D:\HongKing\4. Others\SametimeTranscripts\versebot@au1.ibm.com\20151103\versebotlog.html(81): <div  class="messageBlock grayBackground" timestamp="1446480530086"><div class="showTimestamp tsDisplay"><nobr>涓婂崍12:08:50</nobr></div><div class="message left" title="versebot@au1.ibm.com - IBM Verse Assistant/Australia/Contr/IBM [涓婂崍12:08:50]"  dir="ltr" ><a href="https://w3-01.ibm.com/helpcentral/Content/View/e6e05f21-15e0-4a4f-9a28-bf34f755ac9b/how_do_i_set_up_my_mobile_device_to_work_with_traveler_for_smartcloud_notes" title="https://w3-01.ibm.com/helpcentral/Content/View/e6e05f21-15e0-4a4f-9a28-bf34f755ac9b/how_do_i_set_up_my_mobile_device_to_work_with_traveler_for_smartcloud_notes" class="link">https://w3-01.ibm.com/helpcentral/Content/View/e6e05f21-15e0-4a4f-9a28-bf34f755ac9b/how_do_i_set_up_my_mobile_device_to_work_with_traveler_for_smartcloud_notes</a> <span class="system">&#160;<br/></span></div></div>
+找到 'travel' 3 次。
+----------------------------------------
+查找 'travel' 在 'D:\HongKing\4. Others\SametimeTranscripts\zyunling@cn.ibm.com\20150716\zyunlinglog.html':
+D:\HongKing\4. Others\SametimeTranscripts\zyunling@cn.ibm.com\20150716\zyunlinglog.html(77): <div  class="messageBlock grayBackground" timestamp="1437031882827"><div class="showTimestamp tsDisplay"><nobr>涓嬪崍03:31:22</nobr></div><div class="message left" title="Hong Jin BJ Wei/China/IBM [涓嬪崍03:31:22]"  dir="ltr" ><span style="font-size:10pt;font-family:Arial;color:#000000;" class="left">: The ITSO pays authorized travel and living expenses for all residents, but does not compensate for the time or services of its residents. For IBMers, ITSO residency travel is pre-approved. See How Residencies Work for more details. .</span> <span class="system">&#160;<br/></span></div></div>
+D:\HongKing\4. Others\SametimeTranscripts\zyunling@cn.ibm.com\20150716\zyunlinglog.html(80): <div class="expansion grayBackground"></div><div class="line"></div><div class="expansion"></div><div  class="messageBlock" username="YUN LING ZHANG" timestamp="1437032503089"><div style="height:0"><br/></div><div class="other" title="YUN LING ZHANG [涓嬪崍03:41:43]"  dir="ltr"  ><nobr>YUN LING Z...</nobr></div><br /><div style="clear:both;"></div></div><div  class="messageBlock" timestamp="1437032503089"><div class="showTimestamp tsDisplay"><nobr>涓嬪崍03:41:43</nobr></div><div class="message left" title="YUN LING ZHANG [涓嬪崍03:41:43]"  dir="ltr" ><span style="font-size:10pt;font-family:Arial;color:#000000;" class="left">浣犵‘瀹氫粬浠礋鎷呮墍鏈塼ravel 璐圭敤锛?/span> <span class="system">&#160;<br/></span></div></div>
+找到 'travel' 3 次。
+搜索完成, 找到 'travel' 8 次。(4 个文件)。
+
+
+
+curl http://10.0.41.20:5000/v2.0/ | python -mjson.tool
+curl http://10.0.41.20:5000/v2.0/extensions | python -mjson.tool
+
+使用密码登陆
+curl -X POST -d '{"auth": {"tenantName": "admin","passwordCredentials": {"username": "admin","password": "openstack1"}}}' -H "Content-type: application/json" http://10.0.41.20:5000/v2.0/tokens | python -mjson.tool
+{"auth": {"tenantName": "demo","token": {"id": "cbc36478b0bd8e67e89469c7749d4127"}}}
+使用token登陆
+curl -X POST -d '{"auth": {"tenantName": "admin","token": {"id": "d03c010fea934a28bc31c7b11707e428"}}}' -H "Content-type: application/json" http://10.0.41.20:5000/v2.0/tokens | python -mjson.tool
+
+curl -H "X-Auth-Token:dff380b140f64e39925b021ddf35dc34" http://10.0.4.20:5000/v2.0/tenants | python -mjson.tool
+curl http://10.0.41.20:35357/v2.0
+
+
+DEBUG:keystoneclient.auth.identity.v2:Making authentication request to http://10.0.41.20:5000/v2.0/tokens
+INFO:urllib3.connectionpool:Starting new HTTP connection (1): 10.0.41.20
+DEBUG:urllib3.connectionpool:"POST /v2.0/tokens HTTP/1.1" 200 5511
+DEBUG:keystoneclient.session:REQ: curl -g -i -X GET http://10.0.41.20:35357/v2.0/tenants -H "User-Agent: python-keystoneclient" -H "Accept: application/json" -H "X-Auth-Token: {SHA1}c14ab9eb98f620b9ed1097a1b7519cf7d00c9afd"
+INFO:urllib3.connectionpool:Starting new HTTP connection (1): 10.0.41.20
+DEBUG:urllib3.connectionpool:"GET /v2.0/tenants HTTP/1.1" 200 256
+DEBUG:keystoneclient.session:RESP: [200] date: Sun, 13 Sep 2015 10:06:54 GMT vary: X-Auth-Token content-length: 256 content-type: application/json 
+RESP BODY: {"tenants_links": [], "tenants": [{"description": "admin Tenant", "enabled": true, "id": "2679d23b169b4059a5e9db6483ed7450", "name": "admin"}, {"description": "Service Tenant", "enabled": true, "id": "944cbaea2f8e4e09bd89a5bf02848f20", "name": "service"}]}
+
++----------------------------------+---------+---------+
+|                id                |   name  | enabled |
++----------------------------------+---------+---------+
+| 2679d23b169b4059a5e9db6483ed7450 |  admin  |   True  |
+| 944cbaea2f8e4e09bd89a5bf02848f20 | service |   True  |
++----------------------------------+---------+---------+
+
+572
+642
+234
+
+212 / 321
+
+municipal health bureau
+TianJin BinHai New Area Police Bureau Cloud Platform powered by IBM Cloud Manager
+
+
+LB
+
+redmine的备份
+netapp 存储到位
+
+192.168.5.121   dep.test.com    dep
+192.168.2.86    ctl.test.com    ctl
+192.168.2.87    net.test.com    net
+192.168.2.88    pkvm1.test.com  pkvm1
+192.168.2.89    pkvm2.test.com  pkvm2
+
+YANTAI municipal health bureau  - activity:  Support to build cloud solution design and implementation documentation with presales and sales. 
+China Mobile Research Center in HangZhou - activity: Implement PoC of ICM to support network loadbalance which customer wanted.
+ShangHai HuaRui Bank - activity: Implemented ICM poc on vmware and kvm, introduce ICM function to meet customer's requirement.
+
+
+ICM的优势,以及怎么和vmware, powervc, powerkvm进行集成等问题
+
+redmine的备份需要整理一份文档
+带领leichuang高LB
+
+杭研院的配置	--- 远程桌面无法访问,老的部署服务器器 ,等待协调中
+
+
+chefdk-0.7.0-1.el7.x86_64.rp
+
+
+knife bootstrap {address} --ssh-user {user} --ssh-password '{password}' --sudo --use-sudo-password --node
+
+knife bootstrap 10.0.11.10 -x root -P Passw0rd
+
+
+1. --config
+
+2. 把默认的目录下的东西复制到/root/.chef
+
+
+
+卯云出差 
+
+chef server API & UI调研
+
+
+https://10.0.41.33/login
+
+slancer01/123456
+
+
+[root@chef01 chef]# knife configure
+WARNING: No knife configuration file found
+Where should I put the config file? [/root/.chef/knife.rb] y
+Please enter the chef server URL: [https://chef01.tstpod.slancer.com:443] 
+Please enter an existing username or clientname for the API: [root] 
+Please enter the validation clientname: [chef-validator] 
+Please enter the location of the validation key: [/etc/chef-server/chef-validator.pem] 
+Please enter the path to a chef repository (or leave blank): 
+*****
+
+You must place your client key in:
+  /etc/chef/root.pem
+Before running commands with Knife!
+
+*****
+
+You must place your validation key in:
+  /etc/chef-server/chef-validator.pem
+Before generating instance data with Knife!
+
+*****
+Configuration file written to /etc/chef/y
+
+
+[root@chef01 chef-repo]# knife bootstrap 10.0.11.10 -x root -P Passw0rd
+Doing old-style registration with the validation key at /root/chef-repo/.chef/slancer-validator.pem...
+Delete your validation key in order to use your user credentials instead
+
+Connecting to 10.0.11.10
+10.0.11.10 -----> Installing Chef Omnibus (-v 12)
+10.0.11.10 downloading https://www.opscode.com/chef/install.sh
+10.0.11.10   to file /tmp/install.sh.4450/install.sh
+10.0.11.10 trying wget...
+10.0.11.10 trying curl...
+10.0.11.10 Downloading Chef 12 for el...
+10.0.11.10 downloading https://www.opscode.com/chef/metadata?v=12&prerelease=false&nightlies=false&p=el&pv=6&m=x86_64
+10.0.11.10   to file /tmp/install.sh.4467/metadata.txt
+10.0.11.10 trying wget...
+10.0.11.10 url  https://opscode-omnibus-packages.s3.amazonaws.com/el/6/x86_64/chef-12.4.1-1.el6.x86_64.rpm
+10.0.11.10 md5  f09a9ae589bb9040232c600b008ef812
+10.0.11.10 sha256       95150a4b3c3b2313bd206876e09e2fcf742f2fa4611951d52c79225becb32928
+10.0.11.10 downloaded metadata file looks valid...
+10.0.11.10 downloading https://opscode-omnibus-packages.s3.amazonaws.com/el/6/x86_64/chef-12.4.1-1.el6.x86_64.rpm
+10.0.11.10   to file /tmp/install.sh.4467/chef-12.4.1-1.el6.x86_64.rpm
+10.0.11.10 trying wget...
+10.0.11.10 Comparing checksum with sha256sum...
+10.0.11.10 Installing Chef 12
+10.0.11.10 installing with rpm...
+10.0.11.10 warning: /tmp/install.sh.4467/chef-12.4.1-1.el6.x86_64.rpm: Header V4 DSA/SHA1 Signature, key ID 83ef826a: NOKEY
+10.0.11.10 Preparing...                ########################################### [100%]
+10.0.11.10    1:chef                   ########################################### [100%]
+10.0.11.10 Thank you for installing Chef!
+10.0.11.10 Starting first Chef Client run...
+10.0.11.10 Starting Chef Client, version 12.4.1
+10.0.11.10 Creating a new client identity for lbvm-3.novalocal using the validator key.
+10.0.11.10 [2015-09-17T01:26:29-04:00] ERROR: Error connecting to https://chef01.tstpod.slancer.com/organizations/slancer/clients, retry 1/5
+10.0.11.10 [2015-09-17T01:26:49-04:00] ERROR: Error connecting to https://chef01.tstpod.slancer.com/organizations/slancer/clients, retry 2/5
+10.0.11.10 [2015-09-17T01:27:09-04:00] ERROR: Error connecting to https://chef01.tstpod.slancer.com/organizations/slancer/clients, retry 3/5
+10.0.11.10 
+10.0.11.10 ================================================================================
+10.0.11.10 Chef encountered an error attempting to create the client "lbvm-3.novalocal"
+10.0.11.10 ================================================================================
+10.0.11.10 
+10.0.11.10 Authentication Error:
+10.0.11.10 ---------------------
+10.0.11.10 Failed to authenticate to the chef server (http 401).
+10.0.11.10 The request failed because your clock has drifted by more than 15 minutes.
+10.0.11.10 Syncing your clock to an NTP Time source should resolve the issue.
+10.0.11.10 
+10.0.11.10 
+10.0.11.10 Running handlers:
+10.0.11.10 [2015-09-17T01:27:14-04:00] ERROR: Running exception handlers
+10.0.11.10 Running handlers complete
+10.0.11.10 [2015-09-17T01:27:14-04:00] ERROR: Exception handlers complete
+10.0.11.10 Chef Client failed. 0 resources updated in 100.394236024 seconds
+10.0.11.10 [2015-09-17T01:27:14-04:00] FATAL: Stacktrace dumped to /var/chef/cache/chef-stacktrace.out
+10.0.11.10 [2015-09-17T01:27:14-04:00] ERROR: 401 "Unauthorized"
+10.0.11.10 [2015-09-17T01:27:14-04:00] FATAL: Chef::Exceptions::ChildConvergeError: Chef run process exited
+
+
+惠宾
+总体来说该BP(合胜科技)具有自身的开发团队,目前使用packstack(由redhat提供的Openstack部署管理工具)以Openstack社区基础code来构建自己的openstack云平台, 目前他们急需在下面的问题生得到IBM的协助:
+1. 因为对Openstack技术的积累不够,同时又要快速实现Openstack与他们的现有应用和环境的对接,他们急需解决Openstack在计算,存储,网络等方面新的需求(如zilian所列的现状与需求)
+2. 
+usage: glance image-create [--id <IMAGE_ID>] [--name <NAME>] [--store <STORE>]
+                           [--disk-format <DISK_FORMAT>]
+                           [--container-format <CONTAINER_FORMAT>]
+                           [--owner <TENANT_ID>] [--size <SIZE>]
+                           [--min-disk <DISK_GB>] [--min-ram <DISK_RAM>]
+                           [--location <IMAGE_URL>] [--file <FILE>]
+                           [--checksum <CHECKSUM>] [--copy-from <IMAGE_URL>]
+                           [--is-public {True,False}]
+                           [--is-protected {True,False}]
+                           [--property <key=value>] [--human-readable]
+                           [--progress]
+
+        "openvswitch": {
+          "bridge_mappings": "default:br-eth1",
+          "bridge_mapping_interface": "br-eth1:eth1"
+        }
+      },
+
+近日工作安排
+1。国佩， chef自动化 //done
+2。于光，xingjun，网络
+3。监控
+4。openstack测试
+5。代码管理 （yan， sun，yu）
+
+
+
+mpls， 自动化详细设计 需要碰
+
+
+
+
+
+
+
+
+代码管理
+
+游戏运维
+shell script
+
+
+和power LBS， L3
+和cloud LBS， training
+和 GTS： consultant , training
+和BP， workshop, t3 training
+
+内部wiki， forum搜集客户需求
+在xiaojing名下建一个wiki，yunjun帮忙创建， 
+
+leverage一些L3的人
+了解minrantis等其他openstack产品
+
+03:28:33.779781 6c:ae:8b:02:e7:5c > 6c:ae:8b:01:bb:20, ethertype IPv4 (0x0800), length 167: 192.168.2.87.
+
+
+
+
+
+http://repo.zabbix.com/zabbix/2.4/rhel/7/
+
+        # Full Binary File Call
+        #FULLPATH=$BASEDIR/sbin/$BINARY_NAME
+        FULLPATH=/usr/sbin/$BINARY_NAME
+        
+netapp_storage_family = ontap_cluster
+netapp_storage_protocol = iscsi
+netapp_vserver = openstack-vserver
+netapp_server_hostname = myhostname
+netapp_server_port = port
+netapp_login = username
+netapp_password = password
+
+
+1. 国庆加班,10月4号-7号
+2. 定价策略
+3. 市场推广
+4. 自动化的培训
+
+
+iscsiadm -m node -p <target ipaddr:[port],TPGT> -T <iqn.targetname> -o new
+iscsiadm -m node -p 10.0.0.20:3260,1 -T iqn.1992-08.com.netapp:sn.1787481346 -o new
+
+
+iscsiadm -m node -T iqn.2014-10.com.example.server1:tgt1 -p 192.168.0.254 -u
+
+FAS2240-1> iscsi nodename
+iSCSI target nodename: iqn.1992-08.com.netapp:sn.1787481346
+
+Hong Jin Wei joined IVT since 2013, he accomplished SCE 3.1 IVT and SVT testing 
+for OSEE-KVM, and SCE 3.2 IVT and SVT testing for PowerVC, complete all the 
+related testing ahead of the schedule,  ensure the SCE 3.1 and 3.2 released on 
+time with good performance, he keep good communication with other related team, 
+such as IBM System Director, Openstack, PowerVC and PowerVC driver with 
+management, development and testing; He shows expertise in the system 
+integration, apply them in daily work to resolve the problem to make sure 
+testing go forward smoothly; She also participated in many customer engagement 
+case, like CAD project for Beijing Arigratuure Bank, Client PMR from infosys,  
+9-city POC demo on Pureflex KVM system and KingSoft cloud Poc system 
+implementation. His experties and good passion on technical got very high 
+recognition by both WW and local team.
+
+
+ 
+
+In Y2014, Hong Jin did a great job to contribute ICM product delivery and customer engagement.
+In 1H2014, as SVT tester, Hong Jin took the ownership of PowerKVM testing, with his solid technical skills, he lead other team members to successfully deliver Icehouse. In 2H2014, as customer engagement focal,  HongJin took active part in customer engagement activities, he got very positive feedback from peer teams and customers.
+I was deep impressed by HongJin's dedication and hard works.
+Thanks HongJin for your great contribution to IBM in Y2014!
+I believe in Y2015, you will keep improving technical skills and have deeper impacts to IBM business! 
+
+存储的问题
+netapp的高可用配置的要求需要明确
+
+mooka 65  about 5000+
+
+
+9420:20151119:094051.413 active check "collectd-libvirt.disk.discovery1" is not supported
+
+collectd-libvirt.cpu.discovery
+collectd-libvirt.cpu.discovery
+
+
+小米在线服务工号: 81559
+
+1.1.8.10   yjp1kvm01.yjp1.slancer.com   yjp1kvm01
+1.1.8.11   yjp1kvm02.yjp1.slancer.com   yjp1kvm02
+1.1.8.12   yjp1kvm03.yjp1.slancer.com   yjp1kvm03
+1.1.8.13   yjp1kvm04.yjp1.slancer.com   yjp1kvm04
+1.1.8.14   yjp1kvm05.yjp1.slancer.com   yjp1kvm05
+1.1.8.15   yjp1kvm06.yjp1.slancer.com   yjp1kvm06
+1.1.8.16   yjp1kvm07.yjp1.slancer.com   yjp1kvm07
+1.1.8.17   yjp1kvm08.yjp1.slancer.com   yjp1kvm08
+
+Slancer@1234
+

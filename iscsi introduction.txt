@@ -1,0 +1,61 @@
+Introduction to iSCSI
+
+iSCSI is one of the hottest topics in Storage because it allows you to create centralized SANs
+using TCP networks rather than Fibre Channel (FC) networks. Get a handle on the main iSCSI 
+concepts and terminology.
+
+SANs (Storage Area Networks) are popular as a storage system for many reasons. Most commonly 
+they are popular because the storage is centralized allowing easier management, easier 
+maintenance, very good performance, and it has a good price/performance ratio. Typical SANs are constructed using Fibre Channel (FC) networks and FC hard drives, although SATA, SAS, and SSD drives are used in SANs today.
+
+FC storage has very good performance from the storage hardware to the client using FC networks networks at 2Gb/s, 4Gb/s, and now 8 Gb/s speeds. But FC based SANs require an FC card in each client as well as an FC network (switches) in addition to the normal TCP networks that clients have, adding cost and complexity to servers.
+
+FC based SANs are popular because of very good performance and all of the benefits of centralized storage. But at the same time, they can be rather expensive and complex. But, there is the option of using iSCSI for SANs keeping the benefits of SANs and reducing the complexity because only a TCP network is needed.
+
+SAN Introduction
+
+Virtually every server needs some sort of storage and the associated backup devices and management software. Originally this meant that every server had its own storage, its own backup device, its own management tools, its own security, etc. as show below in Figure 1. This configuration is commonly called Direct Attached Storage (DAS).
+
+
+1. 第一单, 系统上线对客户的意义
+2. ICM, Heat支持(ICO), 异构系统,Openstack, 
+3. 网络架构重新设计(前后因果), 技术难点攻关? 
+4. 
+=================
+
+FJ
+1. Docker,  //kaiqiang, Container-aaS, 集成, Wencheng, 
+2. GRE/vXlan //HongHui, 
+3. cinder, 
+
+deliver到sale那边
+
+GTS
+
+ICO vs Openstack
+ICM vs Openstack
+
+华胜天成
+
+Docker
+
+===================
+Docker：
+技术细节梳理 
+应用场景梳理
+架构相关？
+
+Docker资料
+
+app-get / install
+测试环境？
+
+redhat
+
+基础模板docker file:　exmaple或者自己写，　或者官方ｂｕｉｌｄ号的模板，　mysql
+
+
+
+
+
+
