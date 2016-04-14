@@ -3,47 +3,47 @@ http://autoproxy.au.ibm.com/hk1.pac
 
 1. JXRCCB
 
-������� ��
+需求分析 ：
 
-1��DB2�ͻ���HEAT���ţ�ʵ�����������ɺ��Ѱ�װDB2�ͻ����м��
-2��ָ��IP����was�������ţ�ʵ�����������ɺ��Ѱ�װ��was����
+1）DB2客户端HEAT编排，实现虚机部署完成后已安装DB2客户端中间件
+2）指定IP部署was单机编排，实现虚机部署完成后已安装好was单机
 
-�������� ��
+具体来讲 ：
 
 
-   Ŀǰ����HEAT���ţ��ͻ����������£�
-   1��WAS��Ⱥ����ʵ��HEAT�ű��Զ�����was��Ⱥ�� ���Զ�����WAS��Ⱥ��ϸ�ڣ�����˵WAS��װ���裬����ϵͳ���󣬾�Ĭ�ű���ִ�� �ȣ�
+   目前对于HEAT编排，客户的需求如下：
+   1）WAS集群部署，实现HEAT脚本自动部署was集群； （自动部署WAS集群的细节，比如说WAS安装步骤，操作系统需求，静默脚本的执行 等）
 
-   2��ָ����������Ⱥ�������ڵ���HEAT�ű�����ʱ��ָ������Ľڵ�����Ϊ6���������Բ����������6���ڵ�ļ�Ⱥ
-�������Ƿ����WAS��Ⱥ��
-   3���Ѳ���Ⱥ�ĸ��£������Ѿ�ʹ��һ��HEAT�ű�����4�ڵ�was��Ⱥ����Ⱥ��ʹ�õĹ����У���Ҫ���ӻ���ɾ���ڵ㣬����ʹ��HEAT�ű�ʵ�֣�
-����Ҫ���ƣ�Ŀǰ�ж�stack���µİ취δ�����������󣬽���ͨ��stack��ϵķ�ʽ���������������WAS��Ⱥ��Ȼ��ʵ���Զ���չ��
-   4����HEAT�ű��п�Region�������������һ��HEAT�ű��в���Ķ����������ֿ�����PowerVC Region�����ֿ�����KVM Region��
-��HEAT��Region������Ȼ����֧�֣�������Ҫ�ṩһ��HeAT���÷�Χ��������
+   2）指定数量部署集群：例如在调用HEAT脚本部署时，指定部署的节点数量为6，这样可以部署出来含有6个节点的集群
+（问题是否针对WAS集群）
+   3）已部署集群的更新：例如已经使用一个HEAT脚本部署4节点was集群，集群在使用的过程中，需要添加或者删除节点，怎样使用HEAT脚本实现；
+（需要定制，目前判断stack更新的办法未必能满足需求，建议通过stack组合的方式来做，部署基础的WAS集群，然后实现自动扩展）
+   4）单HEAT脚本中跨Region部署虚机：例如一个HEAT脚本中部署的多个虚机，部分可以在PowerVC Region，部分可以在KVM Region；
+（HEAT跨Region操作必然不能支持，可能需要提供一个HeAT适用范围的描述）
 
-�������֮ǰ��̹��������ظ���˵����ʵ�֣��ͻ�����˼��Ҫ�����ṩһ���ٷ�������������ķ���
-   5���߼����ܣ�HEAT�ܷ�ʵ�ָ��ݼ�Ⱥ���ʹ�������ʵ�ּ�Ⱥ���Զ���չ�����磺��Ⱥ�����Դʹ�ýϸߣ��Զ���չһ�������Դ����Ⱥ�����Դʹ�ýϵͣ��Զ�����һ�������
+这个问题之前请教过您，您回复是说不能实现，客户的意思需要我们提供一个官方出处，和替代的方法
+   5）高级功能：HEAT能否实现根据集群虚机使用情况，实现集群的自动扩展。例如：集群虚机资源使用较高，自动扩展一个虚机资源；集群虚机资源使用较低，自动减少一个虚机。
 
-������ǿ��Եģ���Ҫ�Զ���������Զ���չ�ı������ƣ��Լ���̬�������ƣ�
+（这个是可以的，需要自定义虚拟机自动扩展的报警机制，以及动态伸缩机制）
 
-�ʼ��Ѿ��ظ���
-�������ͷ������Դȥ���ֻ������⣬Ȼ�󾡿����HEAT��WAS��Ⱥ�Ľű���
+邮件已经回复，
+最好是手头能有资源去重现环境问题，然后尽快调试HEAT＋WAS集群的脚本。
 
-����HEAT��Ѷ�ĸ��� 
+关于HEAT资讯的更新 
 
-1. ����ģ�������githug�ϻ�ȡ 
+1. 各类模版均可在githug上获取 
 https://github.com/openstack/heat-templates/tree/master/hot
 
-����
-a �Զ���չ����Դ��ģ�� asg
-b chef��server��
-c �����õ�helloworld
-d �����������
-e ����lb
-f ��region֧��
-g ���õĵȴ�����
-h �Զ�����cinder
-i �Զ�����������
+包括
+a 自动扩展的资源组模版 asg
+b chef－server的
+c 测试用的helloworld
+d 创建虚拟机组
+e 创建lb
+f 多region支持
+g 内置的等待机制
+h 自动挂载cinder
+i 自动加入新网络
 j senlin
 
 
@@ -53,83 +53,83 @@ j senlin
 
 2016/4/12
 jxrccb
-����ʼ� 
+检查邮件 
 
-hyper������ 
-
-
-zabbix������ 
-
-����ս�� LC��ѧԺ ��Leading Concile��
-Ŀ�ģ� ����IBMת���е��쵼��
-�ֶΣ� ����CEO˼ά��ȫ������ս���۹⣬�����ӽǣ����¹������Ʒ��������
-
-��֪���㽫���¶����г��߽磬
-
-Smith��ѧԺ����
-
-LC��ѧԺ�ļƻ��ͽ�չ 
-
-XieDong��kickoff
-
-���һ��СʱDr. Polly
+hyper的问题 
 
 
-David Liu: ������  ��������ѧ  Maryland �������� 
+zabbix的问题 
 
-���� Washington�� DC�� 7 miles far away�� 6 Nobel Prize Winner
-������У�ѣ�
-HP ŮCEO
-Larry Pery google��ʼ�� 
+蓝海战略 LC商学院 （Leading Concile）
+目的： 培养IBM转型中的领导者
+手段： 激发CEO思维，全面提升战略眼光，财务视角，创新管理与产品开发能力
+
+认知计算将重新定义市场边界，
+
+Smith商学院介绍
+
+LC商学院的计划和进展 
+
+XieDong来kickoff
+
+最后一个小时Dr. Polly
+
+
+David Liu: 柳岩祥  马里兰大学  Maryland 马里兰州 
+
+环绕 Washington， DC， 7 miles far away， 6 Nobel Prize Winner
+有名的校友：
+HP 女CEO
+Larry Pery google创始人 
 Kerry
 
-EMBA��Ŀ������������ 
+EMBA项目北美排名第七 
 
-�������쵼����������ע�ڴ��� 
-�ڿ���ʦȫ�����������ڵĿγ� 
-ʮ�����Ϲ�������
-��ҵ����һ����ÿ����·ݣ�ÿ�����·ݿ��Ρ�
-
-
-CDL��CSL 2016 LC Business School�ļƻ��ͽ�չ
-�Ѿ��ܶ����ˣ� ������vp�Ƿ�����
-�����focal�� ת���е��쵼�� 
-��֪�仯 sense & act
-�߸���̬ disrupt
-���Ϻ��� co��create
-�����Ŷ� boost & Amplify
+侧重于领导力培养，关注于创新 
+授课老师全部是美国教授的课程 
+十年以上工作经验
+毕业典礼，一版在每年九月份，每年五月份开课。
 
 
-��֯ίԱ�᣺
-��ѡίԱ�᣺ �廪��ѧ ��ռ��
+CDL／CSL 2016 LC Business School的计划和进展
+已经很多年了， 两个大vp是发起者
+几年的focal： 转型中的领导力 
+感知变化 sense & act
+颠覆常态 disrupt
+精诚合作 co－create
+激发团队 boost & Amplify
 
 
-Ԥ�ƵĿγ̣� ��4��-10�£�
-F2F class��
-Online class��
-
-������ 4�·ݿ�ʼ�� ��ģ30-50��
-5-6�����������Ϊ���棬������IBM��չ��ת�����
-7�£�10�����Ʊ���
-11�� 15����չʾ���� 
-
-XieDong��
-������ʵ�ڵģ�ת���Ǳ����
-	�����͹�˾�����ǲ�Ʒ��
-	��֪����
-	���������̻������ڹ�עһ��
-LabҲ����Ҫת
-	���⹫˾ս�ԣ���������go to china����Ŀ��
-	����������λ��
-	����������Դȥ�����г�
-	�ٴ����ļ�ֵ Openpower����ɫ��ƽ��
-ת�Ϳ��Լ�
-	���ת������ת������ת
-��ôת�� �������ֻ��δ�ᡣ
-���Լ���Ϊת�͵��쵼�ߣ������ߣ�����
+组织委员会：
+评选委员会： 清华大学 金占名
 
 
-�ŷ����˻���ʱ��ֱ���Ʒ��ò׺���
+预计的课程： （4月-10月）
+F2F class：
+Online class：
+
+报名： 4月份开始， 规模30-50人
+5-6月提出问题作为报告，必须与IBM发展和转型相关
+7月－10月完善报告
+11月 15分钟展示报告 
+
+XieDong：
+机遇是实在的，转型是必须的
+	服务型公司，而非产品型
+	认知计算
+	快速认清商机，敢于孤注一掷
+Lab也必须要转
+	理解公司战略，不会再有go to china的项目了
+	理解所处的位置
+	利用自身资源去理解市场
+	再创核心价值 Openpower，绿色地平线
+转型靠自己
+	坚决转，立刻转，快速转
+怎么转？ 这个问题只字未提。
+让自己成为转型的领导者，收益者，大人
+
+
+张风破浪会有时，直挂云帆济沧海。
 
 Paulo Prochno
 
@@ -137,7 +137,7 @@ Paulo Prochno
 video about us wine market: 
 w/ question:
 	How attractive is this industry?
-I	Should you enter the industry? if yes what��s your strategy?
+I	Should you enter the industry? if yes what’s your strategy?
 
 
 Discussion some ideas?
@@ -146,11 +146,11 @@ Budget:  need? site? too much power?
 
 premium
 
-�����û������г���
-���Ȱ׾Ƶĸ����Ǻ�ƣ�
-���Ⱥ�Ƶĸ�����ơ�ƣ�
-����ơ�Ƶĸ�����ˮ��
-Ŀ�ģ� �������𲽽������Ʒ�ơ�
+吸引用户进入市场，
+不喝白酒的给他们红酒，
+不喝红酒的给他们啤酒，
+不喝啤酒的给他们水，
+目的： 让他们逐步接受你的品牌。
 
 you should build a value curve for the industry and find
 ways to be different.
@@ -170,6 +170,7 @@ participant in changing external trends over time.
 Blue ocean perspective: create a new market place 
 create, raise but also reduce,eliminate 
 build a value curve.
+
 
 
 
