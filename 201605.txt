@@ -1,0 +1,94 @@
+事实上，是这样吗？ 在前线奔波过的同志们可能已经有答案了。我们稍后再谈。 首先我们谈谈客户的最终要的是什么？这里打一个比喻，假如我们是房地产开发商，我们提供了一个四四方方的楼盘， 里面什么都没有，是个大盒子，就像云计算的资源池。 然后开发商有一套工具，会根据没个来买房的客户的需求，自动生成各式各样的两居室，三居室，就像客户想要种规格的虚拟服务器一样。 这样看起来很理想吧。 后面的问题呢？装修问题，风火水电等问题。 有特殊客户说，我想组成多套，比如说，2楼1单元来个三居室，4楼3单元来个二居室，6楼2单元来个双层，房间生成之后，把装修也给我做了，风火水电帮我接入，好了之后我直接入住。 开发生说，这个我们做不了，我们不干，全部要客户自己干。 这样操作可以吗？房地产开发商看起来是可以这么操作的，因为这种复杂的诉求极少可能有。 我们的客户呢？他们要服务于企业内部的各个部门，更担心他们的应用是否能平稳迁移到云平台上，他们的集群服务器
+
+`
+5/23
+
+1）Resource Usage页面无法打开：PMR 06333
+2）HEAT脚本Deployment资源部署失效：PMR06318
+3）生产环境服务状态异常：PMR 06334
+4）生产虚机flavor resize失效： PMR 06336
+
+
+最新状态：
+06333: APAR SE64542 is tracking the DB2 error this customer is reporting， 
+Owner: L2 : SCANLAN, WALTER
+
+06318: Update guide for customer to rebuild the image. 
+
+
+
+
+5/16
+
+
+ package dnsmasq-utils available
+No package libyaml-devel available
+No package dnsmasq-utils available
+:
+
+PMR system: 
+https://longspeakz.boulder.ibm.com/WebRetain/pmrSearch.jsp
+
+019561
+Passw0rd
+
+
+{SSHA}HE0/CmStoPTwjLrV43lcdkrVUVRNto3a
+
+
+[root@bogon ~]# openssl req -new -x509 -nodes -out /etc/openldap/certs/cert.pem \
+> -keyout /etc/openldap/certs/priv.pem -days 365
+Generating a 2048 bit RSA private key
+..................+++
+.......................................................................................................................+++
+writing new private key to '/etc/openldap/certs/priv.pem'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [XX]:cn
+State or Province Name (full name) []:bj
+Locality Name (eg, city) [Default City]:bj
+Organization Name (eg, company) [Default Company Ltd]:ibm
+Organizational Unit Name (eg, section) []:cloud
+Common Name (eg, your name or your server's hostname) []:bogon
+Email Address []:weihj1999@gmail.com
+
+
+5/4
+
+mail"
+
+How to maintain the SMC service page?
+Question:
+1. who is the owner can help this?
+2. 
+
+
+icm owner:
+
+Christine A Grev , it's me she is now work in Wastion
+
+Hong Jin Wei  , it's me
+
+Ben Cao, still in ibm cloud.
+
+Dan Hiebert, IBM cloud, CMS
+
+
+未来工作重点安排：
+
+1. cbps的部分工作需要入手 开始逐步了解
+2. 江西农心case的跟踪，目前是software deployment的映像的问题，找环境进行image的创建和测试
+3. CPS的部分支持，20%的effort，现在正在了解权限相关的问题
+4. 需要寻找一个完全的基础晚景进行调研
+
+
+
+
+
+

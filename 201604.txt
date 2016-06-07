@@ -1,4 +1,42 @@
+
 http://autoproxy.au.ibm.com/hk1.pac
+
+
+人们的外出旅游的时候，经常会遇到一些新奇的事物，处于求知的需求，脱口而出的问题是“这是什么东西”。
+
+我们的app的就是要帮助他们快速解决这个问题，由用户使用我们的工具进行拍照，通过后台大数据分析比对，快速反馈给最重用户。
+
+1. 应用的价值和前景分析
+todo
+2. 应用构建的技术储备分析
+todo
+3. 应用寻找投资的价值点分析
+todo
+
+
+
+4/26
+
+
+4/20
+[2016-04-18T14:21:12-04:00] ERROR: Unable to listen on the port #{rabbit_endpoint.port} for RabbitMQ TCP, which is listened on by SSL!
+
+
+
+4/14
+
+P4 and PMC team training
+
+需求：
+
+ICM code structure and openstack component
+
+怎么讲好？
+演讲稿
+
+20:00
+co-work with Sam for hyperV
+
 
 
 1. JXRCCB
